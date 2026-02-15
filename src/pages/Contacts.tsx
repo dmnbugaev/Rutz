@@ -16,8 +16,8 @@ export function Contacts() {
       <section className="mb-16 sm:mb-24 md:mb-32">
         <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden group">
           <img
-            src="https://images.unsplash.com/photo-1769697264314-28f093151bbd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBiZWF1dHklMjBzYWxvbiUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3Njk3OTA1ODR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Location"
+            src=""
+            alt=""
             className="w-full h-full object-cover grayscale-luxury opacity-20"
           />
           <div className="absolute inset-0 flex items-center justify-center">

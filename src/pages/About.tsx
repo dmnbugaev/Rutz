@@ -13,8 +13,8 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center mb-16 sm:mb-24 md:mb-32">
           <div className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1767256483431-4024df253bc8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwd29tYW4lMjBmb3VuZGVyJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzY5MzY0NzQwfDA&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="Founder"
+              src=""
+              alt=""
               className="w-full h-full object-cover grayscale-luxury"
             />
           </div>
@@ -72,8 +72,8 @@ export function About() {
 
           <div className="relative h-[350px] sm:h-[450px] md:h-[600px]">
             <img
-              src="https://images.unsplash.com/photo-1566041510394-cf7c8fe21800?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJibGUlMjB0ZXh0dXJlJTIwbHV4dXJ5fGVufDF8fHx8MTc2OTM2MjQxMHww&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="Luxury Detail"
+              src=""
+              alt=""
               className="w-full h-full object-cover grayscale-luxury"
             />
           </div>
@@ -131,22 +131,22 @@ export function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
           <div className="relative h-[250px] sm:h-[300px] md:h-[400px]">
             <img
-              src="https://images.unsplash.com/photo-1731336479432-3eb5fdb3ab1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGElMjBpbnRlcmlvciUyMGx1eHVyeXxlbnwxfHx8fDE3NjkyNjc5MjN8MA&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="Salon Interior 1"
+              src=""
+              alt=""
               className="w-full h-full object-cover grayscale-luxury"
             />
           </div>
           <div className="relative h-[250px] sm:h-[300px] md:h-[400px]">
             <img
-              src="https://images.unsplash.com/photo-1769697264314-28f093151bbd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBiZWF1dHklMjBzYWxvbiUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3Njk3OTA1ODR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Salon Interior 2"
+              src=""
+              alt=""
               className="w-full h-full object-cover grayscale-luxury"
             />
           </div>
           <div className="relative h-[250px] sm:h-[300px] md:h-[400px] md:col-span-2">
             <img
-              src="https://images.unsplash.com/photo-1705321963943-de94bb3f0dd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MXx8fHwxNzY5MzExNjQ4fDA&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="Salon Interior 3"
+              src=""
+              alt=""
               className="w-full h-full object-cover grayscale-luxury"
             />
           </div>

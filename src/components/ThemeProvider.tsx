@@ -10,18 +10,32 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  // Читаем тему из localStorage или из класса на html (установленного скриптом)
   const [theme, setTheme] = useState<Theme>(() => {
-    const stored = localStorage.getItem('theme');
-    return (stored as Theme) || 'light';
+    // Сначала проверяем класс на html (установленный скриптом в index.html)
+    if (typeof window !== 'undefined') {
+      const html = document.documentElement;
+      if (html.classList.contains('dark')) return 'dark';
+      if (html.classList.contains('light')) return 'light';
+    }
+    
+    // Если класса нет, пробуем localStorage
+    const stored = localStorage.getItem('theme') as Theme | null;
+    if (stored) return stored;
+    
+    // По умолчанию - тёмная тема
+    return 'dark';
   });
 
+  // Синхронизируем класс и localStorage при изменении theme
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
+    
+    // Удаляем оба класса и добавляем нужный
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+    
+    // Сохраняем в localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
 

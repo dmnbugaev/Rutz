@@ -10,7 +10,7 @@ export function ThemeToggle() {
       className="w-10 h-10 flex items-center justify-center border border-border"
       aria-label="Toggle theme"
     >
-      {theme === 'light' ? (
+      {theme === 'dark' ? (
         <Moon className="w-4 h-4 icon-ultra-thin" strokeWidth={0.75} />
       ) : (
         <Sun className="w-4 h-4 icon-ultra-thin" strokeWidth={0.75} />
