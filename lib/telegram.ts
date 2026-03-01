@@ -1,17 +1,22 @@
 /**
  * Telegram channel posts fetcher.
  *
- * Стратегия: парсинг публичной превью-страницы канала t.me/s/channel.
- * Работает для публичных каналов (с username), не требует Bot API.
+ * Стратегия: парсинг публичной превью-страницы t.me/s/channel.
+ * CDN этого канала: cdn4.telesco.pe (не telegram.st — зависит от дата-центра).
+ *
+ * Показываем только:
+ *   - текстовые посты (без медиа)
+ *   - посты с фотографиями (с текстом или без)
+ * Исключаем: видео-посты, стикеры, опросы, пересланные посты.
  */
 
 export interface TelegramPost {
   id: number
   date: Date
-  text: string       // plain text (превью, SEO)
-  html: string       // HTML из Telegram (для полного отображения)
-  photos: string[]   // все фото поста из Telegram CDN (0–N)
-  messageUrl: string // ссылка на оригинальный пост в канале
+  text: string       // plain text (для превью)
+  html: string       // HTML из Telegram (для полной страницы поста)
+  photos: string[]   // URL фотографий из tgme_widget_message_photo_wrap (0..N)
+  messageUrl: string // прямая ссылка на пост в канале
 }
 
 function getChannelUsername(): string {
@@ -56,18 +61,30 @@ function extractMessageHtml(block: string): string {
   return block.slice(openEnd + 1, closingDiv).trim()
 }
 
-// Извлекаем ВСЕ фото из блока (поддержка альбомов)
+/**
+ * Извлекаем URL фотографий ТОЛЬКО из элементов tgme_widget_message_photo_wrap.
+ * Это исключает video-превью (tgme_widget_message_video_thumb) и аватары.
+ */
 function extractPhotos(block: string): string[] {
   const photos: string[] = []
-  const regex = /background-image:url\('([^']+)'\)/g
-  let match
-  while ((match = regex.exec(block)) !== null) {
-    // Исключаем иконки/аватары (обычно маленькие, другой CDN)
-    const url = match[1]
-    if (url.includes('telegram.st') || url.includes('cdn-telegram')) {
-      photos.push(url)
-    }
+  let pos = 0
+
+  while (true) {
+    const wrapPos = block.indexOf('class="tgme_widget_message_photo_wrap', pos)
+    if (wrapPos === -1) break
+
+    // Конец открывающего тега этого элемента
+    const tagEnd = block.indexOf('>', wrapPos)
+    if (tagEnd === -1) break
+
+    // Ищем background-image внутри этого тега
+    const tag = block.slice(wrapPos, tagEnd)
+    const bgMatch = tag.match(/background-image:url\('([^']+)'\)/)
+    if (bgMatch) photos.push(bgMatch[1])
+
+    pos = tagEnd + 1
   }
+
   return photos
 }
 
@@ -79,14 +96,14 @@ function parsePostsFromHtml(html: string, channel: string, limit: number): Teleg
   for (let i = 1; i < parts.length; i++) {
     const block = parts[i]
 
-    // Пропускаем пересланные посты (из других каналов)
+    // Пересланные посты — пропускаем
     if (block.includes('tgme_widget_message_forwarded_from')) continue
 
-    // Пропускаем сервисные сообщения (закрепы, присоединения и т.д.)
-    if (block.includes('tgme_widget_message_service')) continue
+    // Видео-посты — пропускаем (они не годятся для блога)
+    if (block.includes('tgme_widget_message_video_player')) continue
 
     // ID поста
-    const idMatch = block.match(/data-post="[^/]+\/(\d+)"/)
+    const idMatch = block.match(/data-post="[^/]+\/(\d+)/)
     if (!idMatch) continue
     const id = parseInt(idMatch[1], 10)
 
@@ -95,14 +112,14 @@ function parsePostsFromHtml(html: string, channel: string, limit: number): Teleg
     if (!dateMatch) continue
     const date = new Date(dateMatch[1])
 
+    // Фото ТОЛЬКО из photo_wrap элементов
+    const photos = extractPhotos(block)
+
     // Текст
     const messageHtml = extractMessageHtml(block)
     const text = stripHtml(messageHtml)
 
-    // Фото (все URL из этого блока)
-    const photos = extractPhotos(block)
-
-    // Пропускаем посты без текста И без фото (видео, стикеры, опросы и т.д.)
+    // Пропускаем пустые посты (ни текста, ни фото)
     if (!text && photos.length === 0) continue
 
     posts.push({
@@ -115,7 +132,7 @@ function parsePostsFromHtml(html: string, channel: string, limit: number): Teleg
     })
   }
 
-  // t.me/s/ показывает посты от старых к новым → разворачиваем
+  // t.me/s/ отдаёт посты от старых к новым — разворачиваем
   return posts.reverse().slice(0, limit)
 }
 

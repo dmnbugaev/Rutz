@@ -13,6 +13,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: '**.telesco.pe',
+      },
+      {
+        protocol: 'https',
         hostname: 'api.telegram.org',
       },
     ],
