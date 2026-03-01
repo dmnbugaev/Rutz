@@ -1,32 +1,48 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// Stub endpoint — ready to integrate with email/Telegram bot
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { name, phone, message } = body
-
-    if (!name || !phone) {
-      return NextResponse.json({ error: 'Name and phone are required' }, { status: 400 })
+    const { name, phone, message } = body as {
+      name?: string
+      phone?: string
+      message?: string
     }
 
-    // TODO: Send to Telegram bot or email service
-    // Example Telegram integration:
-    // const telegramToken = process.env.TELEGRAM_BOT_TOKEN
-    // const chatId = process.env.TELEGRAM_CHAT_ID
-    // await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     chat_id: chatId,
-    //     text: `Новая заявка!\nИмя: ${name}\nТелефон: ${phone}\nСообщение: ${message || '—'}`,
-    //   }),
-    // })
+    if (!name || !phone) {
+      return NextResponse.json(
+        { error: 'Имя и телефон обязательны' },
+        { status: 400 }
+      )
+    }
 
-    console.log('Contact form submission:', { name, phone, message })
+    // Отправка уведомления в Telegram
+    const token = process.env.TELEGRAM_BOT_TOKEN
+    const chatId = process.env.TELEGRAM_ADMIN_CHAT_ID
 
-    return NextResponse.json({ success: true }, { status: 200 })
+    if (token && chatId) {
+      const text =
+        `📋 *Новая заявка с сайта RUTZ*\n\n` +
+        `*Имя:* ${name}\n` +
+        `*Телефон:* ${phone}\n` +
+        `*Сообщение:* ${message || '—'}`
+
+      await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+          parse_mode: 'Markdown',
+        }),
+      })
+    }
+
+    return NextResponse.json({ success: true })
   } catch {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Ошибка сервера. Попробуйте ещё раз.' },
+      { status: 500 }
+    )
   }
 }

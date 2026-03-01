@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
-import { ArrowUpRight, MapPin, Phone, Clock } from 'lucide-react'
-import { ContactForm } from './ContactForm'
+import { ArrowUpRight, MapPin, Phone, Clock, CalendarCheck, MessageCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Контакты',
@@ -43,6 +42,30 @@ const socials = [
   { name: 'ВКонтакте', url: 'https://vk.ru/darya_skopa13' },
 ]
 
+const bookingOptions = [
+  {
+    icon: CalendarCheck,
+    title: 'Онлайн-запись',
+    sub: 'Выберите удобное время в системе Dikidi',
+    href: 'https://dikidi.net/1348080?p=0.pi',
+    external: true,
+  },
+  {
+    icon: MessageCircle,
+    title: 'Написать в Telegram',
+    sub: 'Отвечу в течение часа',
+    href: 'https://t.me/rutzprostranstvo',
+    external: true,
+  },
+  {
+    icon: Phone,
+    title: 'Позвонить',
+    sub: '+7 (983) 396-22-44',
+    href: 'tel:+79833962244',
+    external: false,
+  },
+]
+
 export default function ContactsPage() {
   return (
     <div className="min-h-screen">
@@ -54,9 +77,7 @@ export default function ContactsPage() {
             <span className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4">
               Связаться
             </span>
-            <h1 className="serif text-5xl sm:text-6xl md:text-7xl mb-6">
-              Контакты
-            </h1>
+            <h1 className="serif text-5xl sm:text-6xl md:text-7xl mb-6">Контакты</h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Запись только после личной консультации. Напишите мне — и мы
               обсудим все детали.
@@ -93,7 +114,7 @@ export default function ContactsPage() {
         </div>
       </section>
 
-      {/* ── Карта + форма ── */}
+      {/* ── Карта + Запись ── */}
       <section className="py-16 sm:py-24 md:py-32">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
@@ -130,22 +151,46 @@ export default function ContactsPage() {
               </div>
             </AnimateOnScroll>
 
-            {/* Форма */}
+            {/* Способы записи */}
             <AnimateOnScroll animation="slide-right">
               <div>
-                <h2 className="serif text-2xl sm:text-3xl mb-6">Оставить заявку</h2>
+                <h2 className="serif text-2xl sm:text-3xl mb-3">Записаться</h2>
                 <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
-                  Заполните форму, и я свяжусь с вами для уточнения деталей
+                  Выберите удобный способ — я свяжусь с вами для уточнения деталей
                   и записи на консультацию.
                 </p>
-                <ContactForm />
+
+                <div className="flex flex-col divide-y divide-border border border-border">
+                  {bookingOptions.map(({ icon: Icon, title, sub, href, external }, i) => (
+                    <Link
+                      key={title}
+                      href={href}
+                      target={external ? '_blank' : undefined}
+                      rel={external ? 'noopener noreferrer' : undefined}
+                      className="flex items-center gap-5 px-6 py-5 transition-luxury hover:bg-accent group"
+                    >
+                      <div className="w-10 h-10 flex items-center justify-center border border-border flex-shrink-0 transition-luxury group-hover:border-foreground/40">
+                        <Icon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-luxury" strokeWidth={1} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium">{title}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>
+                      </div>
+                      <ArrowUpRight
+                        className="w-4 h-4 text-muted-foreground/50 group-hover:text-foreground transition-luxury flex-shrink-0"
+                        strokeWidth={1.5}
+                      />
+                    </Link>
+                  ))}
+                </div>
               </div>
             </AnimateOnScroll>
+
           </div>
         </div>
       </section>
 
-      {/* ── Онлайн-запись CTA ── */}
+      {/* ── CTA ── */}
       <section className="py-16 sm:py-24 border-t border-border bg-foreground text-background">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 text-center">
           <AnimateOnScroll animation="fade-up">

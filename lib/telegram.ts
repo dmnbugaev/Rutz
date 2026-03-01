@@ -1,179 +1,143 @@
+/**
+ * Telegram channel posts fetcher.
+ *
+ * Стратегия: парсинг публичной превью-страницы канала t.me/s/channel.
+ * Работает для публичных каналов (с username), не требует Bot API.
+ */
+
 export interface TelegramPost {
   id: number
-  date: number
-  text: string
-  html: string
-  photoUrl?: string
-  messageUrl: string
+  date: Date
+  text: string       // plain text (превью, SEO)
+  html: string       // HTML из Telegram (для полного отображения)
+  photos: string[]   // все фото поста из Telegram CDN (0–N)
+  messageUrl: string // ссылка на оригинальный пост в канале
 }
 
-interface TelegramEntity {
-  type: string
-  offset: number
-  length: number
-  url?: string
+function getChannelUsername(): string {
+  const username = process.env.TELEGRAM_CHANNEL_USERNAME
+  if (username) return username.replace('@', '')
+
+  const id = process.env.TELEGRAM_CHANNEL_ID ?? ''
+  if (id.startsWith('@')) return id.slice(1)
+
+  return 'rutzprostranstvo'
 }
 
-interface TelegramPhotoSize {
-  file_id: string
-  file_unique_id: string
-  width: number
-  height: number
-  file_size?: number
+function stripHtml(html: string): string {
+  return html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .trim()
 }
 
-interface TelegramMessage {
-  message_id: number
-  date: number
-  text?: string
-  caption?: string
-  entities?: TelegramEntity[]
-  caption_entities?: TelegramEntity[]
-  photo?: TelegramPhotoSize[]
-  chat: {
-    id: number
-    username?: string
-    type: string
-  }
+// Извлекаем innerHTML блока tgme_widget_message_text
+function extractMessageHtml(block: string): string {
+  const textMarker = 'class="tgme_widget_message_text'
+  const footerMarker = 'class="tgme_widget_message_footer'
+
+  const textPos = block.indexOf(textMarker)
+  if (textPos === -1) return ''
+
+  const openEnd = block.indexOf('>', textPos)
+  if (openEnd === -1) return ''
+
+  const footerPos = block.indexOf(footerMarker, openEnd)
+  if (footerPos === -1) return ''
+
+  const closingDiv = block.lastIndexOf('</div>', footerPos - 1)
+  if (closingDiv === -1 || closingDiv <= openEnd) return ''
+
+  return block.slice(openEnd + 1, closingDiv).trim()
 }
 
-interface TelegramUpdate {
-  update_id: number
-  channel_post?: TelegramMessage
-}
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
-
-function entitiesToHtml(text: string, entities?: TelegramEntity[]): string {
-  if (!entities || entities.length === 0) {
-    return escapeHtml(text).replace(/\n/g, '<br>')
-  }
-
-  const sorted = [...entities].sort((a, b) => a.offset - b.offset)
-  let result = ''
-  let pos = 0
-
-  for (const entity of sorted) {
-    result += escapeHtml(text.slice(pos, entity.offset))
-    const entityText = text.slice(entity.offset, entity.offset + entity.length)
-
-    switch (entity.type) {
-      case 'bold':
-        result += `<strong>${escapeHtml(entityText)}</strong>`
-        break
-      case 'italic':
-        result += `<em>${escapeHtml(entityText)}</em>`
-        break
-      case 'text_link':
-        result += `<a href="${entity.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(entityText)}</a>`
-        break
-      case 'url':
-        result += `<a href="${escapeHtml(entityText)}" target="_blank" rel="noopener noreferrer">${escapeHtml(entityText)}</a>`
-        break
-      case 'code':
-        result += `<code>${escapeHtml(entityText)}</code>`
-        break
-      default:
-        result += escapeHtml(entityText)
+// Извлекаем ВСЕ фото из блока (поддержка альбомов)
+function extractPhotos(block: string): string[] {
+  const photos: string[] = []
+  const regex = /background-image:url\('([^']+)'\)/g
+  let match
+  while ((match = regex.exec(block)) !== null) {
+    // Исключаем иконки/аватары (обычно маленькие, другой CDN)
+    const url = match[1]
+    if (url.includes('telegram.st') || url.includes('cdn-telegram')) {
+      photos.push(url)
     }
-
-    pos = entity.offset + entity.length
   }
-
-  result += escapeHtml(text.slice(pos))
-  return result.replace(/\n/g, '<br>')
+  return photos
 }
 
-export async function resolvePhotoUrl(fileId: string): Promise<string | undefined> {
-  const token = process.env.TELEGRAM_BOT_TOKEN
-  if (!token) return undefined
+function parsePostsFromHtml(html: string, channel: string, limit: number): TelegramPost[] {
+  const posts: TelegramPost[] = []
 
-  try {
-    const res = await fetch(
-      `https://api.telegram.org/bot${token}/getFile?file_id=${fileId}`,
-      { next: { revalidate: 3600 } }
-    )
-    const data = await res.json()
-    if (data.ok && data.result?.file_path) {
-      return `https://api.telegram.org/file/bot${token}/${data.result.file_path}`
-    }
-  } catch {
-    // ignore
+  const parts = html.split('<div class="tgme_widget_message_wrap')
+
+  for (let i = 1; i < parts.length; i++) {
+    const block = parts[i]
+
+    // Пропускаем пересланные посты (из других каналов)
+    if (block.includes('tgme_widget_message_forwarded_from')) continue
+
+    // Пропускаем сервисные сообщения (закрепы, присоединения и т.д.)
+    if (block.includes('tgme_widget_message_service')) continue
+
+    // ID поста
+    const idMatch = block.match(/data-post="[^/]+\/(\d+)"/)
+    if (!idMatch) continue
+    const id = parseInt(idMatch[1], 10)
+
+    // Дата
+    const dateMatch = block.match(/datetime="([^"]+)"/)
+    if (!dateMatch) continue
+    const date = new Date(dateMatch[1])
+
+    // Текст
+    const messageHtml = extractMessageHtml(block)
+    const text = stripHtml(messageHtml)
+
+    // Фото (все URL из этого блока)
+    const photos = extractPhotos(block)
+
+    // Пропускаем посты без текста И без фото (видео, стикеры, опросы и т.д.)
+    if (!text && photos.length === 0) continue
+
+    posts.push({
+      id,
+      date,
+      text,
+      html: messageHtml,
+      photos,
+      messageUrl: `https://t.me/${channel}/${id}`,
+    })
   }
-  return undefined
+
+  // t.me/s/ показывает посты от старых к новым → разворачиваем
+  return posts.reverse().slice(0, limit)
 }
 
 export async function fetchChannelPosts(limit = 20): Promise<TelegramPost[]> {
-  const token = process.env.TELEGRAM_BOT_TOKEN
-  const channelId = process.env.TELEGRAM_CHANNEL_ID
-
-  if (!token || !channelId) return []
-
+  const channel = getChannelUsername()
   try {
-    const url = new URL(`https://api.telegram.org/bot${token}/getUpdates`)
-    url.searchParams.set('limit', '100')
-    url.searchParams.set('allowed_updates', JSON.stringify(['channel_post']))
-
-    const res = await fetch(url.toString(), { next: { revalidate: 3600 } })
-    const data = await res.json()
-
-    if (!data.ok || !Array.isArray(data.result)) return []
-
-    const updates: TelegramUpdate[] = data.result
-
-    // Normalize channel ID for comparison
-    const normalizedChannelId = channelId.startsWith('@')
-      ? channelId.slice(1).toLowerCase()
-      : channelId
-
-    const posts = updates
-      .filter((u) => {
-        if (!u.channel_post) return false
-        const chat = u.channel_post.chat
-        const matchesUsername = chat.username?.toLowerCase() === normalizedChannelId
-        const matchesId = String(chat.id) === String(channelId)
-        return matchesUsername || matchesId
-      })
-      .map((u) => u.channel_post!)
-      .filter((msg) => msg.text || msg.caption)
-      .sort((a, b) => b.date - a.date)
-      .slice(0, limit)
-
-    const result: TelegramPost[] = await Promise.all(
-      posts.map(async (msg) => {
-        const rawText = msg.text || msg.caption || ''
-        const entities = msg.entities || msg.caption_entities
-
-        let photoUrl: string | undefined
-        if (msg.photo && msg.photo.length > 0) {
-          const largest = msg.photo.reduce((a, b) =>
-            (a.file_size ?? 0) >= (b.file_size ?? 0) ? a : b
-          )
-          photoUrl = await resolvePhotoUrl(largest.file_id)
-        }
-
-        const channelUsername = msg.chat.username || channelId.replace('@', '')
-        const messageUrl = `https://t.me/${channelUsername}/${msg.message_id}`
-
-        return {
-          id: msg.message_id,
-          date: msg.date,
-          text: rawText,
-          html: entitiesToHtml(rawText, entities),
-          photoUrl,
-          messageUrl,
-        }
-      })
-    )
-
-    return result
+    const res = await fetch(`https://t.me/s/${channel}`, {
+      headers: {
+        'Accept-Language': 'ru-RU,ru;q=0.9',
+        Accept: 'text/html,application/xhtml+xml',
+      },
+      next: { revalidate: 3600 },
+    })
+    if (!res.ok) return []
+    const html = await res.text()
+    return parsePostsFromHtml(html, channel, limit)
   } catch {
     return []
   }
+}
+
+export async function fetchPost(id: number): Promise<TelegramPost | null> {
+  const posts = await fetchChannelPosts(100)
+  return posts.find((p) => p.id === id) ?? null
 }
