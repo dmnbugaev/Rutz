@@ -1,0 +1,263 @@
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import { AnimateOnScroll } from '@/components/AnimateOnScroll'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Услуги и цены',
+  description:
+    'Прайс-лист пространства красоты RUTZ. Окрашивание от 10 000 ₽, AirTouch и Балаяж от 19 500 ₽, выход из нежелательного цвета от 25 000 ₽. Барнаул.',
+}
+
+const categories = [
+  {
+    id: 'consultation',
+    title: 'Консультация',
+    desc: 'Я не работаю вслепую. Начинаем с личной консультации: диагностика структуры, проверка истории волос, точный план и фиксированная цена.',
+    note: '❌ Без фото из WhatsApp · ✅ Только очно',
+    image: 'https://images.unsplash.com/photo-1562004760-acb5f06e2e5a?w=800&q=80',
+    imageAlt: 'Консультация',
+    services: [
+      { name: 'Диагностика структуры волос', price: 'Бесплатно' },
+      { name: 'Проверка на «сюрпризы» (старый пигмент)', price: 'Бесплатно' },
+      { name: 'Точный план достижения вашего цвета', price: 'Бесплатно' },
+      { name: 'Фиксированная цена процедуры', price: 'Гарантия' },
+    ],
+  },
+  {
+    id: 'coloring',
+    title: 'Окрашивание',
+    desc: 'Классическое и альтернативное окрашивание: тонирование, матирование, камуфляж, баня. В каждую процедуру входит УХОД + УКЛАДКА по форме стрижки бесплатно.',
+    note: 'УХОД + УКЛАДКА — включены',
+    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80',
+    imageAlt: 'Окрашивание волос',
+    services: [
+      { name: 'Окрашивание / Тонирование', price: 'от 10 000 ₽' },
+      { name: 'Альтернатива (матирование, камуфляж, баня)', price: 'от 10 000 ₽' },
+    ],
+  },
+  {
+    id: 'techniques',
+    title: 'Техники окрашивания',
+    desc: 'AirTouch, Мелирование (рельеф), Балаяж, Начёс (шатуш). Работа с учётом индивидуальных особенностей ваших волос. Включает УХОД + УКЛАДКА.',
+    note: 'УХОД + УКЛАДКА — включены',
+    image: 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&q=80',
+    imageAlt: 'Техники окрашивания',
+    services: [
+      { name: 'AirTouch', price: 'от 19 500 ₽' },
+      { name: 'Мелирование (рельеф)', price: 'от 19 500 ₽' },
+      { name: 'Балаяж', price: 'от 19 500 ₽' },
+      { name: 'Начёс (шатуш)', price: 'от 19 500 ₽' },
+    ],
+  },
+  {
+    id: 'correction',
+    title: 'Выход из нежелательного цвета',
+    desc: 'Эксперт метода по выходу из нежелательных пигментов и чёрного цвета. Без порошка и без потери качества волос. Гарантированный результат на основе 10-летнего опыта.',
+    note: 'Без порошка · Без потери качества',
+    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80',
+    imageAlt: 'Выход из нежелательного цвета',
+    services: [
+      { name: 'Выход из нежелательного цвета', price: 'от 25 000 ₽' },
+    ],
+  },
+  {
+    id: 'haircut',
+    title: 'Стрижка и укладка',
+    desc: 'Авторские стрижки с учётом формы лица и структуры волос. Профессиональные укладки для любого образа.',
+    note: null,
+    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80',
+    imageAlt: 'Стрижка',
+    services: [
+      { name: 'Стрижка', price: '3 000 ₽' },
+      { name: 'Укладка', price: 'от 3 000 ₽' },
+    ],
+  },
+]
+
+export default function ServicesPage() {
+  return (
+    <div className="min-h-screen">
+
+      {/* ── Hero ── */}
+      <section className="py-20 sm:py-28 md:py-36 border-b border-border">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <AnimateOnScroll animation="fade-up" className="text-center">
+            <span className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4">
+              Прайс-лист
+            </span>
+            <h1 className="serif text-5xl sm:text-6xl md:text-7xl mb-6">
+              Услуги
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Альтернативная колористика от эксперта с 10-летним опытом.
+              В каждую процедуру окрашивания входит уход и укладка — бесплатно.
+            </p>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* ── Важное уведомление ── */}
+      <section className="border-b border-border bg-accent/30">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-10 sm:py-14">
+          <AnimateOnScroll animation="fade-up">
+            <div className="max-w-3xl">
+              <div className="flex gap-6 items-start">
+                <div className="w-0.5 bg-foreground self-stretch flex-shrink-0" />
+                <div>
+                  <h2 className="serif text-2xl sm:text-3xl mb-4">Важно!</h2>
+                  <p className="text-muted-foreground leading-relaxed mb-2">
+                    Я не работаю вслепую. Чтобы результат превзошёл ожидания, а волосы остались здоровыми,
+                    мы начинаем с личной консультации (онлайн или в салоне).
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Только после анализа ваших волос и обсуждения всех деталей я бронирую время на окрашивание.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* ── Категории услуг ── */}
+      <section className="py-16 sm:py-24 md:py-32">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 space-y-20 sm:space-y-28 md:space-y-36">
+          {categories.map((cat, i) => (
+            <div key={cat.id}>
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start ${i % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
+                {/* Image */}
+                <AnimateOnScroll animation={i % 2 === 0 ? 'slide-left' : 'slide-right'}>
+                  <div className={`relative h-[300px] sm:h-[400px] md:h-[520px] overflow-hidden gallery-frame ${i % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                    <Image
+                      src={cat.image}
+                      alt={cat.imageAlt}
+                      fill
+                      className="object-cover grayscale-luxury"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
+                </AnimateOnScroll>
+
+                {/* Content */}
+                <AnimateOnScroll animation={i % 2 === 0 ? 'slide-right' : 'slide-left'}>
+                  <div className="space-y-6 sm:space-y-8 lg:py-4">
+                    <div>
+                      <span className="text-xs text-muted-foreground tracking-luxury">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <h2 className="serif text-3xl sm:text-4xl md:text-5xl mt-2 mb-4">{cat.title}</h2>
+                      <p className="text-muted-foreground leading-relaxed">{cat.desc}</p>
+                      {cat.note && (
+                        <p className="text-xs uppercase tracking-luxury text-muted-foreground mt-3 font-medium">
+                          {cat.note}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Price table */}
+                    <div className="border-t border-b border-border py-6 space-y-0">
+                      {cat.services.map((srv) => (
+                        <div
+                          key={srv.name}
+                          className="flex items-baseline justify-between py-3 gap-4 border-b border-border/50 last:border-0"
+                        >
+                          <span className="text-sm">{srv.name}</span>
+                          <span className="serif text-base whitespace-nowrap text-muted-foreground">
+                            {srv.price}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Link
+                      href="https://dikidi.net/1348080?p=0.pi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury transition-luxury hover:gap-4 duration-300"
+                    >
+                      Записаться <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+                    </Link>
+                  </div>
+                </AnimateOnScroll>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Итоговая таблица ── */}
+      <section className="py-16 sm:py-24 bg-accent/20 border-t border-border">
+        <div className="max-w-3xl mx-auto px-4 sm:px-8">
+          <AnimateOnScroll animation="fade-up">
+            <h2 className="serif text-3xl sm:text-4xl text-center mb-10">
+              Сводный прайс-лист
+            </h2>
+          </AnimateOnScroll>
+          <AnimateOnScroll animation="fade-up" delay={200}>
+            <div className="border border-border">
+              {[
+                { name: 'Консультация', price: 'Бесплатно' },
+                { name: 'Окрашивание / тонирование', price: 'от 10 000 ₽' },
+                { name: 'Альтернатива (матирование, камуфляж)', price: 'от 10 000 ₽' },
+                { name: 'AirTouch', price: 'от 19 500 ₽' },
+                { name: 'Мелирование (рельеф)', price: 'от 19 500 ₽' },
+                { name: 'Балаяж', price: 'от 19 500 ₽' },
+                { name: 'Начёс (шатуш)', price: 'от 19 500 ₽' },
+                { name: 'Выход из нежелательного цвета', price: 'от 25 000 ₽' },
+                { name: 'Стрижка', price: '3 000 ₽' },
+                { name: 'Укладка', price: 'от 3 000 ₽' },
+              ].map((item, i) => (
+                <div
+                  key={item.name}
+                  className={`flex items-center justify-between px-6 py-4 gap-4 ${i < 9 ? 'border-b border-border' : ''}`}
+                >
+                  <span className="text-sm">{item.name}</span>
+                  <span className="serif text-base text-muted-foreground whitespace-nowrap">{item.price}</span>
+                </div>
+              ))}
+              <div className="px-6 py-4 bg-accent/30 border-t border-border">
+                <p className="text-xs text-muted-foreground">
+                  * В процедуры окрашивания входят уход и укладка по форме стрижки — бесплатно.
+                </p>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="py-16 sm:py-24 md:py-32">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 text-center">
+          <AnimateOnScroll animation="fade-up">
+            <h2 className="serif text-3xl sm:text-4xl md:text-5xl mb-6">
+              Готовы к преображению?
+            </h2>
+            <p className="text-muted-foreground mb-10 max-w-xl mx-auto leading-relaxed">
+              Запишитесь на консультацию — это бесплатно и без обязательств
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="https://dikidi.net/1348080?p=0.pi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-10 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+              >
+                Записаться онлайн <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="https://t.me/rutzprostranstvo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-border px-10 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-accent"
+              >
+                Написать в Telegram <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+    </div>
+  )
+}
