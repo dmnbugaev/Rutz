@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
-import { PhotoSlider } from '@/components/PhotoSlider'
+import { MediaSlider } from '@/components/MediaSlider'
 import { fetchChannelPosts, fetchPost } from '@/lib/telegram'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 
@@ -66,14 +66,14 @@ export default async function BlogPostPage({ params }: { params: { id: string } 
         </AnimateOnScroll>
       </div>
 
-      {/* ── Слайдер фото ── */}
-      {post.photos.length > 0 && (
+      {/* ── Медиа ── */}
+      {(post.photos.length > 0 || post.videos.length > 0) && (
         <section className="py-8 sm:py-12">
           <div className="max-w-3xl mx-auto px-4 sm:px-8">
             <AnimateOnScroll animation="fade-up">
-              <PhotoSlider
+              <MediaSlider
                 photos={post.photos}
-                className="aspect-[4/5] sm:aspect-[3/4] gallery-frame"
+                videos={post.videos}
                 priority
               />
             </AnimateOnScroll>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
-import { PhotoSlider } from '@/components/PhotoSlider'
+import { MediaSlider } from '@/components/MediaSlider'
 import { fetchChannelPosts } from '@/lib/telegram'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 
@@ -21,13 +21,8 @@ function formatDate(date: Date): string {
   })
 }
 
-function truncate(text: string, max: number): string {
-  if (text.length <= max) return text
-  return text.slice(0, max).trimEnd() + '…'
-}
-
 export default async function BlogPage() {
-  const posts = await fetchChannelPosts(20)
+  const posts = await fetchChannelPosts(7)
 
   return (
     <div className="min-h-screen">
@@ -56,9 +51,9 @@ export default async function BlogPage() {
         </div>
       </section>
 
-      {/* ── Посты ── */}
+      {/* ── Лента постов ── */}
       <section className="py-16 sm:py-24 md:py-32">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+        <div className="max-w-[680px] mx-auto px-4 sm:px-8">
           {posts.length === 0 ? (
 
             /* Заглушка */
@@ -71,7 +66,7 @@ export default async function BlogPage() {
                 href="https://t.me/rutzprostranstvo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
               >
                 Открыть Telegram-канал <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
@@ -79,50 +74,51 @@ export default async function BlogPage() {
 
           ) : (
 
-            /* Сетка постов */
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">
+            /* Вертикальная лента */
+            <div className="space-y-16">
               {posts.map((post, i) => (
                 <AnimateOnScroll
                   key={post.id}
                   animation="fade-up"
-                  delay={(i % 2) * 80}
-                  className={post.photos.length === 0 ? 'sm:col-span-2' : ''}
+                  delay={i * 60}
                 >
-                  <article className="bg-background flex flex-col h-full group">
+                  <article className="border-b border-border pb-16 last:border-0 last:pb-0">
 
-                    {/* Фото / слайдер — только если есть фотографии */}
-                    {post.photos.length > 0 && (
-                      <Link href={`/blog/${post.id}`} className="block overflow-hidden">
-                        <PhotoSlider
+                    {/* Дата */}
+                    <time
+                      dateTime={post.date.toISOString()}
+                      className="text-xs uppercase tracking-luxury text-muted-foreground block mb-5"
+                    >
+                      {formatDate(post.date)}
+                    </time>
+
+                    {/* Медиа-блок */}
+                    {(post.photos.length > 0 || post.videos.length > 0) && (
+                      <div className="mb-6">
+                        <MediaSlider
                           photos={post.photos}
-                          className="aspect-[3/4] transition-transform duration-700 group-hover:scale-[1.02]"
-                          priority={i < 2}
+                          videos={post.videos}
+                          priority={i === 0}
                         />
-                      </Link>
+                      </div>
                     )}
 
-                    {/* Текст карточки */}
-                    <div className={`flex flex-col gap-4 flex-1 border-border ${post.photos.length > 0 ? 'p-7 sm:p-9 border-t' : 'p-9 sm:p-14'}`}>
-                      <time
-                        dateTime={post.date.toISOString()}
-                        className="text-xs uppercase tracking-luxury text-muted-foreground"
-                      >
-                        {formatDate(post.date)}
-                      </time>
+                    {/* Текст поста */}
+                    {post.text && (
+                      <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 whitespace-pre-line">
+                        {post.text}
+                      </p>
+                    )}
 
-                      {post.text && (
-                        <p className={`leading-relaxed text-muted-foreground flex-1 ${post.photos.length === 0 ? 'text-base sm:text-lg line-clamp-6 max-w-3xl' : 'text-sm line-clamp-4'}`}>
-                          {truncate(post.text, post.photos.length === 0 ? 400 : 240)}
-                        </p>
-                      )}
-
-                      <Link
-                        href={`/blog/${post.id}`}
-                        className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury transition-luxury hover:gap-3 duration-300 mt-auto"
-                      >
-                        Читать далее <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
-                      </Link>
-                    </div>
+                    {/* Ссылка на оригинал */}
+                    <Link
+                      href={post.messageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury transition-luxury hover:gap-3 duration-300"
+                    >
+                      Смотреть в Telegram <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+                    </Link>
                   </article>
                 </AnimateOnScroll>
               ))}

@@ -2,12 +2,13 @@
  * Telegram channel posts fetcher.
  *
  * Стратегия: парсинг публичной превью-страницы t.me/s/channel.
- * CDN этого канала: cdn4.telesco.pe (не telegram.st — зависит от дата-центра).
  *
  * Показываем только:
- *   - текстовые посты (без медиа)
- *   - посты с фотографиями (с текстом или без)
- * Исключаем: видео-посты, стикеры, опросы, пересланные посты.
+ *   - текстовые посты
+ *   - посты с фотографиями
+ *   - посты с видео (с текстом или без)
+ * Исключаем: GIF/анимации, видеосообщения-кружочки, голосовые, стикеры,
+ *            пересланные посты, служебные сообщения, документы без текста.
  */
 
 export interface TelegramPost {
@@ -16,6 +17,7 @@ export interface TelegramPost {
   text: string       // plain text (для превью)
   html: string       // HTML из Telegram (для полной страницы поста)
   photos: string[]   // URL фотографий из tgme_widget_message_photo_wrap (0..N)
+  videos: string[]   // URL видеофайлов из <video src="..."> (0..N)
   messageUrl: string // прямая ссылка на пост в канале
 }
 
@@ -73,11 +75,9 @@ function extractPhotos(block: string): string[] {
     const wrapPos = block.indexOf('class="tgme_widget_message_photo_wrap', pos)
     if (wrapPos === -1) break
 
-    // Конец открывающего тега этого элемента
     const tagEnd = block.indexOf('>', wrapPos)
     if (tagEnd === -1) break
 
-    // Ищем background-image внутри этого тега
     const tag = block.slice(wrapPos, tagEnd)
     const bgMatch = tag.match(/background-image:url\('([^']+)'\)/)
     if (bgMatch) photos.push(bgMatch[1])
@@ -86,6 +86,33 @@ function extractPhotos(block: string): string[] {
   }
 
   return photos
+}
+
+/**
+ * Извлекаем прямые URL видеофайлов из <video src="..."> тегов.
+ * Blob-ссылки и пустые src пропускаем.
+ */
+function extractVideos(block: string): string[] {
+  const videos: string[] = []
+  let pos = 0
+
+  while (true) {
+    const videoTagPos = block.indexOf('<video', pos)
+    if (videoTagPos === -1) break
+
+    const tagEnd = block.indexOf('>', videoTagPos)
+    if (tagEnd === -1) break
+
+    const tag = block.slice(videoTagPos, tagEnd + 1)
+    const srcMatch = tag.match(/\bsrc="([^"]+)"/)
+    if (srcMatch && srcMatch[1] && !srcMatch[1].startsWith('blob:')) {
+      videos.push(srcMatch[1])
+    }
+
+    pos = tagEnd + 1
+  }
+
+  return videos
 }
 
 function parsePostsFromHtml(html: string, channel: string, limit: number): TelegramPost[] {
@@ -102,14 +129,17 @@ function parsePostsFromHtml(html: string, channel: string, limit: number): Teleg
     // Служебные сообщения (закреплено, присоединился и т.д.) — пропускаем
     if (block.includes('service_message')) continue
 
-    // Видео-посты — пропускаем (они не годятся для блога)
-    if (block.includes('tgme_widget_message_video_player')) continue
-
     // Круглые видео (видеосообщения) — пропускаем
     if (block.includes('tgme_widget_message_roundvideo_player')) continue
 
     // Голосовые сообщения — пропускаем
     if (block.includes('tgme_widget_message_voice_player')) continue
+
+    // GIF / анимации — пропускаем
+    if (block.includes('js-message_gif') || block.includes('tgme_widget_message_animation')) continue
+
+    // Стикеры — пропускаем
+    if (block.includes('tgme_widget_message_sticker')) continue
 
     // Документы/файлы без текста — пропускаем
     if (block.includes('tgme_widget_message_document_wrap') && !block.includes('tgme_widget_message_text')) continue
@@ -127,12 +157,15 @@ function parsePostsFromHtml(html: string, channel: string, limit: number): Teleg
     // Фото ТОЛЬКО из photo_wrap элементов
     const photos = extractPhotos(block)
 
+    // Видео из <video src="...">
+    const videos = extractVideos(block)
+
     // Текст
     const messageHtml = extractMessageHtml(block)
     const text = stripHtml(messageHtml)
 
-    // Пропускаем пустые посты (ни текста, ни фото)
-    if (!text && photos.length === 0) continue
+    // Пропускаем пустые посты (ни текста, ни медиа)
+    if (!text && photos.length === 0 && videos.length === 0) continue
 
     posts.push({
       id,
@@ -140,6 +173,7 @@ function parsePostsFromHtml(html: string, channel: string, limit: number): Teleg
       text,
       html: messageHtml,
       photos,
+      videos,
       messageUrl: `https://t.me/${channel}/${id}`,
     })
   }
@@ -148,11 +182,12 @@ function parsePostsFromHtml(html: string, channel: string, limit: number): Teleg
   return posts.reverse().slice(0, limit)
 }
 
-export async function fetchChannelPosts(limit = 20): Promise<TelegramPost[]> {
+export async function fetchChannelPosts(limit = 7): Promise<TelegramPost[]> {
   const channel = getChannelUsername()
   try {
     const res = await fetch(`https://t.me/s/${channel}`, {
       headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; TelegramBotParser/1.0)',
         'Accept-Language': 'ru-RU,ru;q=0.9',
         Accept: 'text/html,application/xhtml+xml',
       },
