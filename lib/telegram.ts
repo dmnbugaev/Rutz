@@ -43,6 +43,23 @@ function stripHtml(html: string): string {
     .trim()
 }
 
+// Убираем служебные фразы Telegram из HTML перед рендером
+function cleanMessageHtml(html: string): string {
+  return html
+    .replace(/<a[^>]*>\s*VIEW IN TELEGRAM\s*<\/a>/gi, '')
+    .replace(/Please open Telegram to view this post\.?/gi, '')
+    .trim()
+}
+
+// Убираем служебные фразы Telegram из plain-text
+function cleanText(text: string): string {
+  return text
+    .replace(/Please open Telegram to view this post\.?/gi, '')
+    .replace(/VIEW IN TELEGRAM/gi, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+}
+
 // Извлекаем innerHTML блока tgme_widget_message_text
 function extractMessageHtml(block: string): string {
   const textMarker = 'class="tgme_widget_message_text'
@@ -112,7 +129,8 @@ function extractVideos(block: string): string[] {
     pos = tagEnd + 1
   }
 
-  return videos
+  // Дедупликация — один и тот же src может встречаться несколько раз
+  return [...new Set(videos)]
 }
 
 function parsePostsFromHtml(html: string, channel: string, limit: number): TelegramPost[] {
@@ -160,9 +178,9 @@ function parsePostsFromHtml(html: string, channel: string, limit: number): Teleg
     // Видео из <video src="...">
     const videos = extractVideos(block)
 
-    // Текст
-    const messageHtml = extractMessageHtml(block)
-    const text = stripHtml(messageHtml)
+    // Текст (очищаем от служебных фраз Telegram)
+    const messageHtml = cleanMessageHtml(extractMessageHtml(block))
+    const text = cleanText(stripHtml(messageHtml))
 
     // Пропускаем пустые посты (ни текста, ни медиа)
     if (!text && photos.length === 0 && videos.length === 0) continue

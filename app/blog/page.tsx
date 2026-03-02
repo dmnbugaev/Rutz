@@ -21,6 +21,11 @@ function formatDate(date: Date): string {
   })
 }
 
+function truncate(text: string, max: number): string {
+  if (text.length <= max) return text
+  return text.slice(0, max).trimEnd() + '…'
+}
+
 export default async function BlogPage() {
   const posts = await fetchChannelPosts(7)
 
@@ -75,50 +80,52 @@ export default async function BlogPage() {
           ) : (
 
             /* Вертикальная лента */
-            <div className="space-y-16">
+            <div className="space-y-6">
               {posts.map((post, i) => (
                 <AnimateOnScroll
                   key={post.id}
                   animation="fade-up"
                   delay={i * 60}
                 >
-                  <article className="border-b border-border pb-16 last:border-0 last:pb-0">
-
-                    {/* Дата */}
-                    <time
-                      dateTime={post.date.toISOString()}
-                      className="text-xs uppercase tracking-luxury text-muted-foreground block mb-5"
-                    >
-                      {formatDate(post.date)}
-                    </time>
+                  <article className="border border-border bg-background overflow-hidden">
 
                     {/* Медиа-блок */}
                     {(post.photos.length > 0 || post.videos.length > 0) && (
-                      <div className="mb-6">
-                        <MediaSlider
-                          photos={post.photos}
-                          videos={post.videos}
-                          priority={i === 0}
-                        />
-                      </div>
+                      <MediaSlider
+                        photos={post.photos}
+                        videos={post.videos}
+                        priority={i === 0}
+                      />
                     )}
 
-                    {/* Текст поста */}
-                    {post.text && (
-                      <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 whitespace-pre-line">
-                        {post.text}
-                      </p>
-                    )}
+                    {/* Контент карточки */}
+                    <div className="p-6 sm:p-8">
 
-                    {/* Ссылка на оригинал */}
-                    <Link
-                      href={post.messageUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury transition-luxury hover:gap-3 duration-300"
-                    >
-                      Смотреть в Telegram <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
-                    </Link>
+                      {/* Дата */}
+                      <time
+                        dateTime={post.date.toISOString()}
+                        className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4"
+                      >
+                        {formatDate(post.date)}
+                      </time>
+
+                      {/* Текст поста */}
+                      {post.text && (
+                        <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-5 whitespace-pre-line">
+                          {truncate(post.text, 256)}
+                        </p>
+                      )}
+
+                      {/* Ссылка на оригинал */}
+                      <Link
+                        href={post.messageUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury transition-luxury hover:gap-3 duration-300"
+                      >
+                        Смотреть в Telegram <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+                      </Link>
+                    </div>
                   </article>
                 </AnimateOnScroll>
               ))}
