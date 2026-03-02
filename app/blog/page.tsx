@@ -82,11 +82,16 @@ export default async function BlogPage() {
             /* Сетка постов */
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">
               {posts.map((post, i) => (
-                <AnimateOnScroll key={post.id} animation="fade-up" delay={(i % 2) * 80}>
+                <AnimateOnScroll
+                  key={post.id}
+                  animation="fade-up"
+                  delay={(i % 2) * 80}
+                  className={post.photos.length === 0 ? 'sm:col-span-2' : ''}
+                >
                   <article className="bg-background flex flex-col h-full group">
 
-                    {/* Фото / слайдер */}
-                    {post.photos.length > 0 ? (
+                    {/* Фото / слайдер — только если есть фотографии */}
+                    {post.photos.length > 0 && (
                       <Link href={`/blog/${post.id}`} className="block overflow-hidden">
                         <PhotoSlider
                           photos={post.photos}
@@ -94,17 +99,10 @@ export default async function BlogPage() {
                           priority={i < 2}
                         />
                       </Link>
-                    ) : (
-                      /* Текстовый пост — декоративная заглушка */
-                      <Link href={`/blog/${post.id}`} className="block aspect-[3/4] bg-accent/40 flex items-center justify-center overflow-hidden">
-                        <span className="serif text-6xl sm:text-7xl text-muted-foreground/20 select-none">
-                          RUTZ
-                        </span>
-                      </Link>
                     )}
 
                     {/* Текст карточки */}
-                    <div className="p-7 sm:p-9 flex flex-col gap-4 flex-1 border-t border-border">
+                    <div className={`flex flex-col gap-4 flex-1 border-border ${post.photos.length > 0 ? 'p-7 sm:p-9 border-t' : 'p-9 sm:p-14'}`}>
                       <time
                         dateTime={post.date.toISOString()}
                         className="text-xs uppercase tracking-luxury text-muted-foreground"
@@ -113,8 +111,8 @@ export default async function BlogPage() {
                       </time>
 
                       {post.text && (
-                        <p className="text-sm leading-relaxed text-muted-foreground line-clamp-4 flex-1">
-                          {truncate(post.text, 240)}
+                        <p className={`leading-relaxed text-muted-foreground flex-1 ${post.photos.length === 0 ? 'text-base sm:text-lg line-clamp-6 max-w-3xl' : 'text-sm line-clamp-4'}`}>
+                          {truncate(post.text, post.photos.length === 0 ? 400 : 240)}
                         </p>
                       )}
 

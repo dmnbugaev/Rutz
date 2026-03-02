@@ -99,8 +99,20 @@ function parsePostsFromHtml(html: string, channel: string, limit: number): Teleg
     // Пересланные посты — пропускаем
     if (block.includes('tgme_widget_message_forwarded_from')) continue
 
+    // Служебные сообщения (закреплено, присоединился и т.д.) — пропускаем
+    if (block.includes('service_message')) continue
+
     // Видео-посты — пропускаем (они не годятся для блога)
     if (block.includes('tgme_widget_message_video_player')) continue
+
+    // Круглые видео (видеосообщения) — пропускаем
+    if (block.includes('tgme_widget_message_roundvideo_player')) continue
+
+    // Голосовые сообщения — пропускаем
+    if (block.includes('tgme_widget_message_voice_player')) continue
+
+    // Документы/файлы без текста — пропускаем
+    if (block.includes('tgme_widget_message_document_wrap') && !block.includes('tgme_widget_message_text')) continue
 
     // ID поста
     const idMatch = block.match(/data-post="[^/]+\/(\d+)/)
