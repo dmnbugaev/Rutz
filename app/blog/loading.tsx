@@ -23,7 +23,7 @@ export default function BlogLoading() {
               {/* Date */}
               <div className="h-3 bg-muted w-32 mb-5 rounded" />
               {/* Media */}
-              <div className="aspect-[4/3] bg-muted mb-6 rounded" />
+              <div className="aspect-[3/4] bg-muted mb-6 rounded" />
               {/* Text lines */}
               <div className="space-y-2 mb-6">
                 <div className="h-4 bg-muted rounded" />

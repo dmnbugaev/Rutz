@@ -5,7 +5,7 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="border-t border-border/40 bg-white/60 dark:bg-neutral-950/60 backdrop-blur-xl">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
           {/* Brand */}
@@ -97,7 +97,7 @@ export function Footer() {
               href="https://dikidi.net/1348080?p=0.pi"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-foreground text-background px-6 py-3 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+              className="inline-flex items-center bg-foreground text-background px-6 py-3 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
             >
               Онлайн-запись
             </Link>
@@ -105,7 +105,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="border-t border-border/40 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
             © {year} RUTZ Пространство красоты. Все права защищены.
           </p>

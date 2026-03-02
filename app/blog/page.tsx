@@ -58,7 +58,7 @@ export default async function BlogPage() {
 
       {/* ── Лента постов ── */}
       <section className="py-16 sm:py-24 md:py-32">
-        <div className="max-w-[680px] mx-auto px-4 sm:px-8">
+        <div className="max-w-[900px] mx-auto px-4 sm:px-8">
           {posts.length === 0 ? (
 
             /* Заглушка */
@@ -71,7 +71,7 @@ export default async function BlogPage() {
                 href="https://t.me/rutzprostranstvo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
               >
                 Открыть Telegram-канал <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
@@ -87,7 +87,7 @@ export default async function BlogPage() {
                   animation="fade-up"
                   delay={i * 60}
                 >
-                  <article className="border border-border bg-background overflow-hidden">
+                  <article className="glass-card overflow-hidden">
 
                     {/* Медиа-блок */}
                     {(post.photos.length > 0 || post.videos.length > 0) && (
@@ -148,13 +148,13 @@ export default async function BlogPage() {
                 href="https://t.me/rutzprostranstvo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-10 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
               >
                 Telegram-канал <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
               <Link
                 href="/contacts"
-                className="inline-flex items-center justify-center gap-2 border border-border px-10 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-accent"
+                className="inline-flex items-center justify-center gap-2 border border-border/60 px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
               >
                 Записаться <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>

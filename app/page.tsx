@@ -68,14 +68,14 @@ export default function HomePage() {
                 href="https://dikidi.net/1348080?p=0.pi"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 sm:px-12 py-4 sm:py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
               >
                 Записаться
                 <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center gap-2 border border-border px-8 sm:px-12 py-4 sm:py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-accent"
+                className="inline-flex items-center justify-center gap-2 border border-border/60 px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
               >
                 Услуги и цены
                 <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
@@ -92,7 +92,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Принцип работы (KEY MESSAGE) ── */}
-      <section className="py-16 sm:py-24 md:py-32 border-t border-border bg-accent/30">
+      <section className="py-16 sm:py-24 md:py-32 border-t border-border/40 bg-accent/20">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
           <AnimateOnScroll animation="fade-up">
             <div className="max-w-3xl mx-auto text-center">
@@ -153,14 +153,14 @@ export default function HomePage() {
             </div>
           </AnimateOnScroll>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {services.map((s, i) => (
               <AnimateOnScroll key={s.title} animation="fade-up" delay={i * 100}>
-                <div className="bg-background p-6 sm:p-8 h-full flex flex-col gap-4 group hover:bg-accent/30 transition-luxury">
+                <div className="glass-card p-6 sm:p-8 h-full flex flex-col gap-4 group hover-lift">
                   <span className="text-xs text-muted-foreground tracking-luxury">{String(i + 1).padStart(2, '0')}</span>
                   <h3 className="serif text-xl sm:text-2xl">{s.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed flex-1">{s.desc}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                  <div className="flex items-center justify-between pt-4 border-t border-border/50">
                     <span className="serif text-lg">{s.price}</span>
                     <Link
                       href="/services"
@@ -220,7 +220,7 @@ export default function HomePage() {
                 </ul>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury border border-border px-6 py-3 transition-luxury hover:bg-accent"
+                  className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury border border-border/60 px-6 py-3 rounded-xl transition-luxury hover:bg-accent/60 glass-subtle"
                 >
                   Узнать больше <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
                 </Link>
@@ -248,7 +248,7 @@ export default function HomePage() {
               </p>
               <Link
                 href="/education"
-                className="inline-flex items-center gap-2 bg-foreground text-background px-8 sm:px-12 py-4 sm:py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                className="inline-flex items-center gap-2 bg-foreground text-background px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
               >
                 Узнать об обучении <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
@@ -287,7 +287,7 @@ export default function HomePage() {
                 href="https://dikidi.net/1348080?p=0.pi"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-10 sm:px-14 py-5 sm:py-6 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-10 sm:px-14 py-5 sm:py-6 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
               >
                 Записаться онлайн
                 <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
@@ -296,7 +296,7 @@ export default function HomePage() {
                 href="https://t.me/rutzprostranstvo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border border-border px-10 sm:px-14 py-5 sm:py-6 text-xs uppercase tracking-luxury transition-luxury hover:bg-accent"
+                className="inline-flex items-center justify-center gap-2 border border-border/60 px-10 sm:px-14 py-5 sm:py-6 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
               >
                 Написать в Telegram
               </Link>

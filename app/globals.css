@@ -5,27 +5,27 @@
 /* ── CSS Variables ── */
 @layer base {
   :root {
-    --background: 0 0% 98%;
+    --background: 220 20% 98%;
     --foreground: 0 0% 8%;
-    --card: 0 0% 96%;
-    --border: 0 0% 88%;
-    --muted: 0 0% 94%;
+    --card: 0 0% 100%;
+    --border: 220 15% 88%;
+    --muted: 220 15% 95%;
     --muted-foreground: 0 0% 45%;
     --primary: 0 0% 8%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 40%;
     --secondary-foreground: 0 0% 8%;
-    --accent: 0 0% 94%;
+    --accent: 220 15% 94%;
     --accent-foreground: 0 0% 8%;
   }
 
   .dark {
     --background: 0 0% 6%;
     --foreground: 0 0% 95%;
-    --card: 0 0% 10%;
+    --card: 0 0% 9%;
     --border: 0 0% 18%;
     --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
+    --muted-foreground: 0 0% 55%;
     --primary: 0 0% 95%;
     --primary-foreground: 0 0% 6%;
     --secondary: 0 0% 65%;
@@ -47,7 +47,16 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 90% 60% at 10% 0%, rgba(200, 200, 220, 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 90% 100%, rgba(220, 200, 215, 0.14) 0%, transparent 60%);
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(ellipse 90% 60% at 10% 0%, rgba(255, 255, 255, 0.025) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 90% 100%, rgba(255, 255, 255, 0.018) 0%, transparent 60%);
   }
 
   h1, h2, h3, h4 {
@@ -59,6 +68,71 @@
 @layer utilities {
   .serif {
     @apply font-serif;
+  }
+
+  /* ── Glassmorphism / iOS 26 style ── */
+
+  /* Full glass panel */
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Card with rounded corners */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Subtle glass (lighter blur) */
+  .glass-subtle {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Dark mode overrides */
+  .dark .glass {
+    background: rgba(12, 12, 12, 0.78);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .dark .glass-card {
+    background: rgba(14, 14, 14, 0.72);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.45), 0 1px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .dark .glass-subtle {
+    background: rgba(18, 18, 18, 0.55);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Reduce blur on mobile for performance */
+  @media (max-width: 640px) {
+    .glass {
+      backdrop-filter: blur(12px) saturate(150%);
+      -webkit-backdrop-filter: blur(12px) saturate(150%);
+    }
+    .glass-card {
+      backdrop-filter: blur(10px) saturate(130%);
+      -webkit-backdrop-filter: blur(10px) saturate(130%);
+    }
+    .glass-subtle {
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+    }
   }
 
   .tracking-luxury {
