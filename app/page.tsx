@@ -6,9 +6,26 @@ import { RutzLogo } from '@/components/RutzLogo'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Главная',
+  title: {
+    absolute: 'RUTZ — Пространство красоты | Колорист Барнаул, Дарья Рутц',
+  },
   description:
-    'Пространство красоты RUTZ. Дарья Рутц — колорист с 10-летним опытом в Барнауле. Сложные техники окрашивания, выход из нежелательного цвета, обучение колористике.',
+    'Профессиональное окрашивание в Барнауле: AirTouch, балаяж, выход из нежелательного цвета. 10 лет опыта. Запишитесь на бесплатную консультацию!',
+  alternates: {
+    canonical: 'https://rutz.beauty',
+  },
+  openGraph: {
+    title: 'RUTZ — Пространство красоты | Колорист Барнаул, Дарья Рутц',
+    description:
+      'Профессиональное окрашивание в Барнауле: AirTouch, балаяж, выход из нежелательного цвета. 10 лет опыта. Запишитесь!',
+    url: 'https://rutz.beauty',
+    type: 'website',
+  },
+  twitter: {
+    title: 'RUTZ — Пространство красоты | Колорист Барнаул, Дарья Рутц',
+    description:
+      'Профессиональное окрашивание в Барнауле: AirTouch, балаяж, выход из нежелательного цвета. 10 лет опыта.',
+  },
 }
 
 const services = [
@@ -85,7 +102,7 @@ export default function HomePage() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground">
+        <div aria-hidden="true" className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground">
           <span className="text-[10px] uppercase tracking-widest">Scroll</span>
           <div className="w-px h-8 bg-border" />
         </div>

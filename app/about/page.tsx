@@ -5,9 +5,24 @@ import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 import { ArrowRight, Award, Heart, Sparkles, Star } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Обо мне',
+  title: 'Дарья Рутц — колорист Барнаул с 10-летним опытом',
   description:
-    'Дарья Рутц — колорист с 10-летним опытом, основатель пространства красоты RUTZ в Барнауле. История, философия, экспертиза.',
+    'Дарья Рутц — эксперт колористики с 10-летним опытом. Основатель RUTZ в Барнауле. Выход из нежелательного цвета, работа с сединой, обучение.',
+  alternates: {
+    canonical: 'https://rutz.beauty/about',
+  },
+  openGraph: {
+    title: 'Дарья Рутц — колорист Барнаул с 10-летним опытом | RUTZ',
+    description:
+      'Эксперт колористики с 10-летним опытом. Основатель RUTZ в Барнауле. Выход из нежелательного цвета, работа с сединой, обучение.',
+    url: 'https://rutz.beauty/about',
+    type: 'profile',
+  },
+  twitter: {
+    title: 'Дарья Рутц — колорист Барнаул с 10-летним опытом',
+    description:
+      'Эксперт колористики с 10-летним опытом. Основатель RUTZ в Барнауле. Выход из нежелательного цвета, работа с сединой.',
+  },
 }
 
 const stats = [
@@ -133,7 +148,7 @@ export default function AboutPage() {
                 </div>
                 <Link
                   href="/contacts"
-                  className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                  className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
                 >
                   Записаться на консультацию
                   <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
@@ -211,15 +226,15 @@ export default function AboutPage() {
               Принцип работы
             </h2>
             <p className="text-base sm:text-lg leading-relaxed opacity-80 mb-4">
-              ❌ Я не работаю «с листа» или по фото из WhatsApp.
+              Я не работаю «с листа» или по фото из WhatsApp.
             </p>
             <p className="text-base sm:text-lg leading-relaxed opacity-80 mb-8">
-              ✅ Только очная консультация. Фото врёт — камера искажает цвет,
+              Только очная консультация. Фото врёт — камера искажает цвет,
               а история ваших волос видна только при личном осмотре.
             </p>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 border border-background/40 text-background px-8 py-4 text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
+              className="inline-flex items-center gap-2 border border-background/40 text-background px-8 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
             >
               Посмотреть услуги <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
             </Link>
@@ -227,5 +242,35 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Дарья Рутц',
+          jobTitle: 'Колорист, преподаватель альтернативной колористики',
+          url: 'https://rutz.beauty/about',
+          worksFor: {
+            '@type': 'BeautySalon',
+            name: 'RUTZ Пространство красоты',
+            url: 'https://rutz.beauty',
+          },
+          knowsAbout: [
+            'Альтернативная колористика',
+            'AirTouch',
+            'Балаяж',
+            'Выход из нежелательного цвета',
+            'Работа с сединой',
+            'Обучение колористике',
+          ],
+          sameAs: [
+            'https://t.me/rutzprostranstvo',
+            'https://www.instagram.com/rutz_prostranstvo',
+            'https://vk.ru/darya_skopa13',
+          ],
+        }),
+      }}
+    />
   )
 }

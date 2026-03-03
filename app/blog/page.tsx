@@ -8,9 +8,24 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Блог',
+  title: 'Блог — Советы по колористике и уходу за волосами',
   description:
-    'Блог пространства красоты RUTZ. Советы по уходу за волосами, новинки колористики и истории преображений из Telegram-канала Дарьи Рутц.',
+    'Блог RUTZ: советы по уходу за волосами, техники окрашивания и истории преображений от Дарьи Рутц. Подписывайтесь на Telegram-канал!',
+  alternates: {
+    canonical: 'https://rutz.beauty/blog',
+  },
+  openGraph: {
+    title: 'Блог RUTZ — Советы по колористике и уходу за волосами',
+    description:
+      'Советы по уходу за волосами, техники окрашивания и истории преображений от Дарьи Рутц. Барнаул.',
+    url: 'https://rutz.beauty/blog',
+    type: 'website',
+  },
+  twitter: {
+    title: 'Блог RUTZ — Советы по колористике и уходу за волосами',
+    description:
+      'Советы по уходу за волосами, техники окрашивания и истории преображений от Дарьи Рутц.',
+  },
 }
 
 function formatDate(date: Date): string {

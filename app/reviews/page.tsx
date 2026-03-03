@@ -4,9 +4,24 @@ import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 import { ArrowUpRight, Star } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Отзывы клиентов',
+  title: 'Отзывы о колористе Дарье Рутц — Рейтинг 5.0 | Барнаул',
   description:
-    'Отзывы клиентов пространства красоты RUTZ. Дарья Рутц — колорист с 10-летним опытом, Барнаул. Рейтинг 5.0 — AirTouch, выход из нежелательного цвета, балаяж.',
+    'Отзывы клиентов RUTZ о Дарье Рутц: AirTouch, балаяж, выход из нежелательного цвета. Рейтинг 5.0, более 100 довольных клиентов. Барнаул.',
+  alternates: {
+    canonical: 'https://rutz.beauty/reviews',
+  },
+  openGraph: {
+    title: 'Отзывы о колористе Дарье Рутц — Рейтинг 5.0 | RUTZ Барнаул',
+    description:
+      'Отзывы клиентов RUTZ о Дарье Рутц: AirTouch, балаяж, выход из нежелательного цвета. Рейтинг 5.0, более 100 клиентов.',
+    url: 'https://rutz.beauty/reviews',
+    type: 'website',
+  },
+  twitter: {
+    title: 'Отзывы о колористе Дарье Рутц — Рейтинг 5.0 | Барнаул',
+    description:
+      'Отзывы клиентов RUTZ о Дарье Рутц: AirTouch, балаяж, выход из нежелательного цвета. Рейтинг 5.0.',
+  },
 }
 
 const reviews = [
@@ -158,7 +173,7 @@ export default function ReviewsPage() {
               href="https://t.me/rutzprostranstvo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-background/40 text-background px-10 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
+              className="inline-flex items-center gap-2 border border-background/40 text-background px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
             >
               Написать отзыв <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
             </Link>
@@ -166,5 +181,34 @@ export default function ReviewsPage() {
         </div>
       </section>
     </div>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BeautySalon',
+          name: 'RUTZ Пространство красоты',
+          url: 'https://rutz.beauty',
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '5.0',
+            bestRating: '5',
+            worstRating: '1',
+            ratingCount: String(reviews.length),
+            reviewCount: String(reviews.length),
+          },
+          review: reviews.map((r) => ({
+            '@type': 'Review',
+            author: { '@type': 'Person', name: r.name },
+            reviewBody: r.text,
+            reviewRating: {
+              '@type': 'Rating',
+              ratingValue: String(r.stars),
+              bestRating: '5',
+            },
+          })),
+        }),
+      }}
+    />
   )
 }

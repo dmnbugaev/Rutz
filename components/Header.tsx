@@ -42,8 +42,8 @@ export function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-white/80 dark:bg-neutral-950/80 backdrop-blur-2xl border-b border-white/50 dark:border-white/10 shadow-[0_2px_20px_rgba(0,0,0,0.06)]'
-            : 'bg-white/40 dark:bg-neutral-950/30 backdrop-blur-md border-b border-white/30 dark:border-white/5'
+            ? 'bg-white/90 dark:bg-[#111111] backdrop-blur-2xl border-b border-black/[0.06] dark:border-white/[0.08] shadow-[0_1px_24px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_0_rgba(255,255,255,0.06)]'
+            : 'bg-white/60 dark:bg-[#0f0f0f]/80 backdrop-blur-xl border-b border-black/[0.04] dark:border-white/[0.05]'
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 flex items-center justify-between">
@@ -86,7 +86,8 @@ export function Header() {
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="lg:hidden w-10 h-10 flex items-center justify-center border border-border/60 rounded-xl relative z-50 transition-luxury hover:bg-accent/60 hover:backdrop-blur-sm"
-              aria-label="Toggle menu"
+              aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+              aria-expanded={menuOpen}
             >
               {menuOpen ? (
                 <X className="w-5 h-5" strokeWidth={1} />
@@ -101,14 +102,14 @@ export function Header() {
       {/* Mobile overlay */}
       {menuOpen && (
         <div
-          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/30 dark:bg-black/60 backdrop-blur-sm z-40 lg:hidden"
           onClick={() => setMenuOpen(false)}
         />
       )}
 
       {/* Mobile menu */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-72 sm:w-80 bg-white/85 dark:bg-neutral-950/88 backdrop-blur-2xl border-l border-white/50 dark:border-white/10 rounded-l-3xl z-40 lg:hidden transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] shadow-[-8px_0_40px_rgba(0,0,0,0.12)] ${
+        className={`fixed top-0 right-0 bottom-0 w-72 sm:w-80 bg-white dark:bg-[#111111] backdrop-blur-2xl border-l border-black/[0.06] dark:border-white/[0.08] rounded-l-3xl z-40 lg:hidden transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] shadow-[-8px_0_40px_rgba(0,0,0,0.12)] dark:shadow-[-8px_0_60px_rgba(0,0,0,0.8)] ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >

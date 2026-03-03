@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: '%s | RUTZ',
   },
   description:
-    'Дарья Рутц — колорист с 10-летним опытом, преподаватель альтернативной колористики. Пространство красоты RUTZ в Барнауле. Выход из нежелательного цвета, AirTouch, Балаяж.',
+    'Дарья Рутц — колорист с 10-летним опытом в Барнауле. AirTouch, балаяж, выход из нежелательного цвета. Запишитесь на бесплатную консультацию!',
   keywords: [
     'колорист Барнаул',
     'окрашивание волос Барнаул',
@@ -36,7 +36,12 @@ export const metadata: Metadata = {
     'балаяж Барнаул',
     'выход из черного цвета',
     'обучение колористике',
+    'пространство красоты Барнаул',
+    'мелирование Барнаул',
+    'шатуш Барнаул',
+    'выход из нежелательного цвета Барнаул',
   ],
+  authors: [{ name: 'Дарья Рутц', url: 'https://rutz.beauty/about' }],
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
@@ -44,10 +49,24 @@ export const metadata: Metadata = {
     title: 'RUTZ — Пространство красоты | Дарья Рутц, колорист Барнаул',
     description:
       'Колорист с 10-летним опытом. Выход из нежелательного цвета, сложные техники окрашивания, обучение. Барнаул.',
+    url: 'https://rutz.beauty',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'RUTZ — Пространство красоты | Дарья Рутц, колорист Барнаул',
+    description:
+      'Колорист с 10-летним опытом. Выход из нежелательного цвета, сложные техники окрашивания, обучение. Барнаул.',
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
   },
 }
 
@@ -70,6 +89,48 @@ export default function RootLayout({
           <Footer />
           <CookieConsent />
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BeautySalon',
+              name: 'RUTZ Пространство красоты',
+              description:
+                'Дарья Рутц — колорист с 10-летним опытом. AirTouch, балаяж, выход из нежелательного цвета, обучение колористике. Барнаул.',
+              url: 'https://rutz.beauty',
+              telephone: '+79833962244',
+              email: 'info@rutz.beauty',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Павловский тракт, 162',
+                addressLocality: 'Барнаул',
+                addressRegion: 'Алтайский край',
+                postalCode: '656038',
+                addressCountry: 'RU',
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: 53.3476,
+                longitude: 83.7765,
+              },
+              openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                opens: '10:00',
+                closes: '21:00',
+              },
+              priceRange: '₽₽',
+              currenciesAccepted: 'RUB',
+              paymentAccepted: 'Cash, Credit Card',
+              sameAs: [
+                'https://t.me/rutzprostranstvo',
+                'https://www.instagram.com/rutz_prostranstvo',
+                'https://vk.ru/darya_skopa13',
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   )

@@ -5,9 +5,24 @@ import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Услуги и цены',
+  title: 'Услуги и цены — Окрашивание, Балаяж, AirTouch Барнаул',
   description:
-    'Прайс-лист пространства красоты RUTZ. Окрашивание от 10 000 ₽, AirTouch и Балаяж от 19 500 ₽, выход из нежелательного цвета от 25 000 ₽. Барнаул.',
+    'Прайс RUTZ Барнаул: окрашивание от 10 000 ₽, AirTouch и балаяж от 19 500 ₽, выход из нежелательного цвета от 25 000 ₽. Уход и укладка включены!',
+  alternates: {
+    canonical: 'https://rutz.beauty/services',
+  },
+  openGraph: {
+    title: 'Услуги и цены — Окрашивание, Балаяж, AirTouch Барнаул | RUTZ',
+    description:
+      'Прайс RUTZ Барнаул: окрашивание от 10 000 ₽, AirTouch и балаяж от 19 500 ₽, выход из нежелательного цвета от 25 000 ₽. Уход и укладка включены!',
+    url: 'https://rutz.beauty/services',
+    type: 'website',
+  },
+  twitter: {
+    title: 'Услуги и цены — Окрашивание, Балаяж, AirTouch Барнаул',
+    description:
+      'Прайс RUTZ Барнаул: окрашивание от 10 000 ₽, AirTouch и балаяж от 19 500 ₽, выход из нежелательного цвета от 25 000 ₽.',
+  },
 }
 
 const categories = [
@@ -15,7 +30,7 @@ const categories = [
     id: 'consultation',
     title: 'Консультация',
     desc: 'Я не работаю вслепую. Начинаем с личной консультации: диагностика структуры, проверка истории волос, точный план и фиксированная цена.',
-    note: '❌ Без фото из WhatsApp · ✅ Только очно',
+    note: 'Без фото из WhatsApp · Только очно',
     image: 'https://images.unsplash.com/photo-1562004760-acb5f06e2e5a?w=800&q=80',
     imageAlt: 'Консультация',
     services: [
@@ -242,7 +257,7 @@ export default function ServicesPage() {
                 href="https://dikidi.net/1348080?p=0.pi"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-10 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
               >
                 Записаться онлайн <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
@@ -250,7 +265,7 @@ export default function ServicesPage() {
                 href="https://t.me/rutzprostranstvo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border border-border px-10 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-accent"
+                className="inline-flex items-center justify-center gap-2 border border-border/60 px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
               >
                 Написать в Telegram <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
@@ -259,5 +274,73 @@ export default function ServicesPage() {
         </div>
       </section>
     </div>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: 'Услуги пространства красоты RUTZ',
+          url: 'https://rutz.beauty/services',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              item: {
+                '@type': 'Service',
+                name: 'Консультация колориста',
+                description: 'Диагностика структуры волос, план достижения цвета. Бесплатно.',
+                provider: { '@type': 'BeautySalon', name: 'RUTZ Пространство красоты' },
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'RUB' },
+              },
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              item: {
+                '@type': 'Service',
+                name: 'Окрашивание волос',
+                description: 'Классическое и альтернативное окрашивание. Уход и укладка включены.',
+                provider: { '@type': 'BeautySalon', name: 'RUTZ Пространство красоты' },
+                offers: { '@type': 'Offer', price: '10000', priceCurrency: 'RUB' },
+              },
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              item: {
+                '@type': 'Service',
+                name: 'AirTouch / Балаяж / Мелирование',
+                description: 'Техники объёмного окрашивания для натурального живого цвета.',
+                provider: { '@type': 'BeautySalon', name: 'RUTZ Пространство красоты' },
+                offers: { '@type': 'Offer', price: '19500', priceCurrency: 'RUB' },
+              },
+            },
+            {
+              '@type': 'ListItem',
+              position: 4,
+              item: {
+                '@type': 'Service',
+                name: 'Выход из нежелательного цвета',
+                description: 'Без порошка, без потери качества. Гарантированный результат.',
+                provider: { '@type': 'BeautySalon', name: 'RUTZ Пространство красоты' },
+                offers: { '@type': 'Offer', price: '25000', priceCurrency: 'RUB' },
+              },
+            },
+            {
+              '@type': 'ListItem',
+              position: 5,
+              item: {
+                '@type': 'Service',
+                name: 'Стрижка',
+                description: 'Авторская стрижка с учётом формы лица и структуры волос.',
+                provider: { '@type': 'BeautySalon', name: 'RUTZ Пространство красоты' },
+                offers: { '@type': 'Offer', price: '3000', priceCurrency: 'RUB' },
+              },
+            },
+          ],
+        }),
+      }}
+    />
   )
 }

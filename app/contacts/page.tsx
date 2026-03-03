@@ -4,9 +4,24 @@ import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 import { ArrowUpRight, MapPin, Phone, Clock, CalendarCheck, MessageCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Контакты',
+  title: 'Контакты — Запись к колористу в Барнауле',
   description:
-    'Контакты пространства красоты RUTZ. Барнаул, ЖК Питер, Павловский тракт 162. Телефон: +7 (983) 396-22-44. Запись онлайн.',
+    'Запишитесь к колористу Дарье Рутц в Барнауле. Адрес: Павловский тракт 162. Телефон +7 (983) 396-22-44. Онлайн-запись и Telegram. Работаем 10–21 ч.',
+  alternates: {
+    canonical: 'https://rutz.beauty/contacts',
+  },
+  openGraph: {
+    title: 'Контакты RUTZ — Запись к колористу в Барнауле',
+    description:
+      'Запишитесь к колористу Дарье Рутц в Барнауле. Адрес: Павловский тракт 162. Телефон +7 (983) 396-22-44. Работаем 10–21 ч.',
+    url: 'https://rutz.beauty/contacts',
+    type: 'website',
+  },
+  twitter: {
+    title: 'Контакты RUTZ — Запись к колористу в Барнауле',
+    description:
+      'Запишитесь к колористу Дарье Рутц в Барнауле. Адрес: Павловский тракт 162. Телефон +7 (983) 396-22-44.',
+  },
 }
 
 const contacts = [
@@ -142,7 +157,7 @@ export default function ContactsPage() {
                       href={s.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="border border-border px-5 py-2.5 text-xs uppercase tracking-luxury transition-luxury hover:bg-accent"
+                      className="border border-border/60 px-5 py-2.5 rounded-xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
                     >
                       {s.name}
                     </Link>
@@ -205,7 +220,7 @@ export default function ContactsPage() {
               href="https://dikidi.net/1348080?p=0.pi"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-background/40 text-background px-10 sm:px-14 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
+              className="inline-flex items-center gap-2 border border-background/40 text-background px-10 sm:px-14 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
             >
               Онлайн-запись <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
             </Link>

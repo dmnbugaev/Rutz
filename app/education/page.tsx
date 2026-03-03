@@ -2,12 +2,27 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
-import { ArrowRight, ArrowUpRight, CheckCircle, GraduationCap } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Check, CheckCircle, GraduationCap } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Обучение',
+  title: 'Обучение колористике у Дарьи Рутц — Барнаул и онлайн',
   description:
-    'Обучение альтернативной колористике у Дарьи Рутц. Попасть можно только после собеседования. Базовый и продвинутый курсы. Барнаул и онлайн.',
+    'Обучение альтернативной колористике у Дарьи Рутц — 10 лет опыта. Только после собеседования. AirTouch, балаяж, работа с сединой. Запишитесь!',
+  alternates: {
+    canonical: 'https://rutz.beauty/education',
+  },
+  openGraph: {
+    title: 'Обучение колористике у Дарьи Рутц — Барнаул и онлайн | RUTZ',
+    description:
+      'Обучение альтернативной колористике у Дарьи Рутц — 10 лет опыта. Только после собеседования. AirTouch, балаяж, работа с сединой.',
+    url: 'https://rutz.beauty/education',
+    type: 'website',
+  },
+  twitter: {
+    title: 'Обучение колористике у Дарьи Рутц — Барнаул и онлайн',
+    description:
+      'Обучение альтернативной колористике — 10 лет опыта. Только после собеседования. AirTouch, балаяж, работа с сединой.',
+  },
 }
 
 const achievements = [
@@ -201,8 +216,8 @@ export default function EducationPage() {
                   'Вы поймёте, подходит ли вам мой стиль преподавания',
                 ].map((item) => (
                   <li key={item} className="flex gap-4 items-start">
-                    <span className="w-5 h-5 border border-foreground flex items-center justify-center flex-shrink-0 mt-0.5 text-xs">
-                      ✓
+                    <span className="w-5 h-5 border border-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3" strokeWidth={2} />
                     </span>
                     <p className="text-sm text-muted-foreground leading-relaxed">{item}</p>
                   </li>
@@ -221,7 +236,7 @@ export default function EducationPage() {
                   href="https://t.me/rutzprostranstvo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-foreground text-background px-8 sm:px-12 py-4 sm:py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                  className="inline-flex items-center gap-2 bg-foreground text-background px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
                 >
                   Записаться на собеседование
                   <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
@@ -247,13 +262,13 @@ export default function EducationPage() {
                 href="https://t.me/rutzprostranstvo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-10 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
               >
                 Написать в Telegram <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
               <Link
                 href="/contacts"
-                className="inline-flex items-center justify-center gap-2 border border-border px-10 py-5 text-xs uppercase tracking-luxury transition-luxury hover:bg-accent"
+                className="inline-flex items-center justify-center gap-2 border border-border/60 px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
               >
                 Контакты <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
@@ -262,5 +277,48 @@ export default function EducationPage() {
         </div>
       </section>
     </div>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Course',
+          name: 'Обучение альтернативной колористике',
+          description:
+            'Авторский курс Дарьи Рутц по альтернативной колористике: AirTouch, балаяж, выход из нежелательного цвета, работа с сединой. Только после собеседования.',
+          url: 'https://rutz.beauty/education',
+          provider: {
+            '@type': 'Person',
+            name: 'Дарья Рутц',
+            url: 'https://rutz.beauty/about',
+          },
+          hasCourseInstance: [
+            {
+              '@type': 'CourseInstance',
+              courseMode: ['onsite', 'online'],
+              location: {
+                '@type': 'Place',
+                name: 'RUTZ Пространство красоты',
+                address: {
+                  '@type': 'PostalAddress',
+                  streetAddress: 'Павловский тракт, 162',
+                  addressLocality: 'Барнаул',
+                  addressCountry: 'RU',
+                },
+              },
+            },
+          ],
+          teaches: [
+            'Альтернативная колористика',
+            'AirTouch',
+            'Балаяж',
+            'Выход из нежелательного цвета',
+            'Работа с сединой',
+          ],
+          educationalLevel: 'Intermediate to Advanced',
+          inLanguage: 'ru',
+        }),
+      }}
+    />
   )
 }
