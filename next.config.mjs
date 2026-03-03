@@ -2,10 +2,6 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
       // Telegram CDN — фотографии из постов канала
       {
         protocol: 'https',

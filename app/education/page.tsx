@@ -86,7 +86,7 @@ export default function EducationPage() {
             <AnimateOnScroll animation="slide-left">
               <div className="relative h-[400px] sm:h-[520px] md:h-[620px] overflow-hidden gallery-frame">
                 <Image
-                  src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+                  src="/image/IMG_9476.jpg"
                   alt="Дарья Рутц — преподаватель"
                   fill
                   className="object-cover grayscale-luxury"
