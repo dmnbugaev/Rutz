@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useMemo } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react'
 
@@ -15,10 +15,13 @@ interface MediaSliderProps {
 }
 
 export function MediaSlider({ photos, videos, priority = false }: MediaSliderProps) {
-  const items: MediaItem[] = [
-    ...photos.map((url): MediaItem => ({ type: 'photo', url })),
-    ...videos.map((url): MediaItem => ({ type: 'video', url })),
-  ]
+  const items = useMemo<MediaItem[]>(
+    () => [
+      ...photos.map((url): MediaItem => ({ type: 'photo', url })),
+      ...videos.map((url): MediaItem => ({ type: 'video', url })),
+    ],
+    [photos, videos]
+  )
 
   const [current, setCurrent] = useState(0)
   const [lightbox, setLightbox] = useState<string | null>(null)

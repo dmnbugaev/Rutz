@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 import { ArrowRight, ArrowUpRight, Check, CheckCircle, GraduationCap } from 'lucide-react'
+import { TEACHERS } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Обучение колористике у Дарьи Рутц — Барнаул и онлайн',
@@ -32,16 +33,6 @@ const achievements = [
   'Построение личного бренда в индустрии красоты',
 ]
 
-const teachers = [
-  'Спартак Киракосян (основатель Sekta)',
-  'Малясов Сергей',
-  'Светлана Кулешова',
-  'Алексей Камышников',
-  'Ольга Дементьева',
-  'Алеся Теперикова',
-  'Наталья Яворская',
-]
-
 const steps = [
   {
     num: '01',
@@ -67,6 +58,7 @@ const steps = [
 
 export default function EducationPage() {
   return (
+    <>
     <div className="min-h-screen">
 
       {/* ── Hero ── */}
@@ -155,7 +147,7 @@ export default function EducationPage() {
             </div>
           </AnimateOnScroll>
           <div className="flex flex-wrap justify-center gap-3">
-            {teachers.map((teacher, i) => (
+            {TEACHERS.map((teacher, i) => (
               <AnimateOnScroll key={teacher} animation="fade-up" delay={i * 60}>
                 <div className="border border-border px-5 py-3 text-sm text-muted-foreground">
                   {teacher}
@@ -320,5 +312,6 @@ export default function EducationPage() {
         }),
       }}
     />
+    </>
   )
 }

@@ -95,6 +95,7 @@ function StarRating({ count }: { count: number }) {
 
 export default function ReviewsPage() {
   return (
+    <>
     <div className="min-h-screen">
 
       {/* ── Hero ── */}
@@ -210,5 +211,6 @@ export default function ReviewsPage() {
         }),
       }}
     />
+    </>
   )
 }

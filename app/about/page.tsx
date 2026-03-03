@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 import { ArrowRight, Award, Heart, Sparkles, Star } from 'lucide-react'
+import { TEACHERS } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Дарья Рутц — колорист Барнаул с 10-летним опытом',
@@ -32,16 +33,6 @@ const stats = [
   { value: '∞', label: 'любовь к делу', icon: Heart },
 ]
 
-const teachers = [
-  'Спартак Киракосян (основатель Sekta)',
-  'Малясов Сергей',
-  'Светлана Кулешова',
-  'Алексей Камышников',
-  'Ольга Дементьева',
-  'Алеся Теперикова',
-  'Наталья Яворская',
-]
-
 const expertise = [
   {
     title: 'Выход из нежелательного цвета',
@@ -63,6 +54,7 @@ const expertise = [
 
 export default function AboutPage() {
   return (
+    <>
     <div className="min-h-screen">
 
       {/* ── Hero ── */}
@@ -203,7 +195,7 @@ export default function AboutPage() {
             </AnimateOnScroll>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {teachers.map((teacher, i) => (
+              {TEACHERS.map((teacher, i) => (
                 <AnimateOnScroll key={teacher} animation="fade-up" delay={i * 80}>
                   <div className="flex items-center gap-4 border border-border p-4 sm:p-5">
                     <span className="text-xs text-muted-foreground tracking-luxury w-6">
@@ -272,5 +264,6 @@ export default function AboutPage() {
         }),
       }}
     />
+    </>
   )
 }
