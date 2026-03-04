@@ -784,6 +784,9 @@ video {
 .h-px {
   height: 1px;
 }
+.h-\[320px\] {
+  height: 320px;
+}
 .max-h-full {
   max-height: 100%;
 }
@@ -1865,6 +1868,10 @@ img {
     height: 550px;
   }
 
+  .sm\:h-\[420px\] {
+    height: 420px;
+  }
+
   .sm\:w-80 {
     width: 20rem;
   }
@@ -2081,6 +2088,10 @@ img {
 
   .md\:h-\[650px\] {
     height: 650px;
+  }
+
+  .md\:h-\[500px\] {
+    height: 500px;
   }
 
   .md\:gap-12 {

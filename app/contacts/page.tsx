@@ -103,7 +103,7 @@ export default function ContactsPage() {
             <AnimateOnScroll animation="slide-right">
               <div className="relative h-[400px] sm:h-[520px] overflow-hidden gallery-frame">
                 <Image
-                  src="/image/IMG_9495.jpg"
+                  src="/image/IMG_9523.jpg"
                   alt="Пространство красоты RUTZ"
                   fill
                   className="object-cover grayscale-luxury"
