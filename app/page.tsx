@@ -57,14 +57,7 @@ export default function HomePage() {
 
       {/* ── Hero ── */}
       <section className="relative min-h-[calc(100vh-57px)] flex flex-col items-center justify-center px-4 sm:px-8 py-20 overflow-hidden">
-        {/* Decorative lines */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-8 w-px h-32 bg-border" />
-          <div className="absolute top-1/4 right-8 w-px h-32 bg-border" />
-          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-24 h-px bg-border" />
-        </div>
-
-        <div className="text-center max-w-5xl w-full">
+<div className="text-center max-w-5xl w-full">
           {/* Big logo */}
           <div className="flex justify-center mb-8 sm:mb-12">
             <RutzLogo

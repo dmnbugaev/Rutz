@@ -43,11 +43,14 @@ function stripHtml(html: string): string {
     .trim()
 }
 
-// Убираем служебные фразы Telegram из HTML перед рендером
+// Убираем служебные фразы и реакции Telegram из HTML перед рендером
 function cleanMessageHtml(html: string): string {
   return html
     .replace(/<a[^>]*>\s*VIEW IN TELEGRAM\s*<\/a>/gi, '')
     .replace(/Please open Telegram to view this post\.?/gi, '')
+    // Реакции (👍 ❤️ и счётчики)
+    .replace(/<[^>]*class="[^"]*tgme_widget_message_reaction[^"]*"[^>]*>[\s\S]*?<\/[a-z]+>/gi, '')
+    .replace(/<[^>]*class="[^"]*reactions[^"]*"[^>]*>[\s\S]*?<\/[a-z]+>/gi, '')
     .trim()
 }
 

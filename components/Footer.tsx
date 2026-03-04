@@ -1,44 +1,75 @@
 import Link from 'next/link'
 import { RutzLogo } from './RutzLogo'
+import { ArrowUpRight } from 'lucide-react'
+
+const navLinks = [
+  { name: 'Обо мне', path: '/about' },
+  { name: 'Услуги и цены', path: '/services' },
+  { name: 'Обучение', path: '/education' },
+  { name: 'Отзывы', path: '/reviews' },
+  { name: 'Блог', path: '/blog' },
+  { name: 'Контакты', path: '/contacts' },
+]
+
+const socials = [
+  { name: 'Telegram', url: 'https://t.me/rutzprostranstvo' },
+  { name: 'Instagram', url: 'https://www.instagram.com/rutz_prostranstvo' },
+  { name: 'ВКонтакте', url: 'https://vk.ru/darya_skopa13' },
+]
 
 export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border/40 bg-white/60 dark:bg-neutral-950/60 backdrop-blur-xl">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1 space-y-5">
-            <RutzLogo variant="compact" className="h-6 w-auto text-foreground" />
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Пространство красоты RUTZ.<br />
-              Дарья Рутц — колорист с 10-летним опытом.
+    <footer className="bg-foreground text-background relative overflow-hidden">
+
+      {/* ── Декоративная линия ── */}
+      <div className="h-px bg-gradient-to-r from-transparent via-background/15 to-transparent" />
+
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+        
+        {/* ── Разделитель ── */}
+        <div className="border-t border-background/[0.08]" />
+
+        {/* ── Информационная сетка ── */}
+        <div className="py-12 sm:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
+
+          {/* Колонка 01: О нас */}
+          <div>
+            <span className="text-[9px] uppercase tracking-luxury opacity-25 block mb-6">
+              01 — О нас
+            </span>
+            <p className="text-[13px] leading-[1.8] opacity-55 mb-8">
+              Дарья Рутц — колорист с&nbsp;10-летним стажем. Люксовые окрашивания,
+              уходы и&nbsp;профессиональное обучение.
             </p>
-            <p className="text-xs text-muted-foreground">
-              Барнаул, ЖК Питер<br />
-              Павловский тракт, 162
-            </p>
+            <div className="flex flex-col gap-2.5">
+              {socials.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-luxury opacity-35 hover:opacity-90 transition-luxury"
+                >
+                  {s.name}
+                  <ArrowUpRight className="w-2.5 h-2.5" strokeWidth={1.5} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Navigation */}
-          <div className="space-y-4">
-            <h4 className="text-xs uppercase tracking-luxury small-caps text-muted-foreground mb-5">
-              Навигация
-            </h4>
+          {/* Колонка 02: Навигация */}
+          <div>
+            <span className="text-[9px] uppercase tracking-luxury opacity-25 block mb-6">
+              02 — Разделы
+            </span>
             <nav className="flex flex-col gap-3">
-              {[
-                { name: 'Обо мне', path: '/about' },
-                { name: 'Услуги и цены', path: '/services' },
-                { name: 'Обучение', path: '/education' },
-                { name: 'Отзывы', path: '/reviews' },
-                { name: 'Блог', path: '/blog' },
-                { name: 'Контакты', path: '/contacts' },
-              ].map((item) => (
+              {navLinks.map((item) => (
                 <Link
                   key={item.path}
                   href={item.path}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-luxury"
+                  className="text-[13px] opacity-45 hover:opacity-95 transition-luxury leading-none"
                 >
                   {item.name}
                 </Link>
@@ -46,76 +77,91 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Contacts */}
-          <div className="space-y-4">
-            <h4 className="text-xs uppercase tracking-luxury small-caps text-muted-foreground mb-5">
-              Контакты
-            </h4>
+          {/* Колонка 03: Контакты */}
+          <div>
+            <span className="text-[9px] uppercase tracking-luxury opacity-25 block mb-6">
+              03 — Контакты
+            </span>
+            <div className="flex flex-col gap-6">
+              <div>
+                <p className="text-[9px] uppercase tracking-luxury opacity-25 mb-2">Адрес</p>
+                <p className="text-[13px] leading-relaxed opacity-60">
+                  Барнаул, ЖК Питер<br />
+                  Павловский тракт, 162
+                </p>
+              </div>
+              <div>
+                <p className="text-[9px] uppercase tracking-luxury opacity-25 mb-2">Телефон</p>
+                <a
+                  href="tel:+79833962244"
+                  className="text-[13px] opacity-60 hover:opacity-100 transition-luxury"
+                >
+                  +7 (983) 396-22-44
+                </a>
+              </div>
+              <div>
+                <p className="text-[9px] uppercase tracking-luxury opacity-25 mb-2">Часы работы</p>
+                <p className="text-[13px] leading-relaxed opacity-60">
+                  Пн – Вс: 10:00 – 21:00<br />
+                  <span className="opacity-60">По предварительной записи</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Колонка 04: Запись */}
+          <div>
+            <span className="text-[9px] uppercase tracking-luxury opacity-25 block mb-6">
+              04 — Запись
+            </span>
+            <p className="text-[13px] leading-relaxed opacity-45 mb-8">
+              Запись только после&nbsp;личной консультации. Свяжитесь любым
+              удобным способом.
+            </p>
             <div className="flex flex-col gap-3">
-              <a
-                href="tel:+79833962244"
-                className="text-sm text-muted-foreground hover:text-foreground transition-luxury"
+              <Link
+                href="https://dikidi.net/1348080?p=0.pi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-5 py-4 border border-background/20 rounded-2xl text-[11px] uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground group"
               >
-                +7 (983) 396-22-44
-              </a>
+                Онлайн-запись
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-luxury" strokeWidth={1.5} />
+              </Link>
               <a
                 href="https://t.me/rutzprostranstvo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-foreground transition-luxury"
+                className="flex items-center justify-between px-5 py-4 border border-background/10 rounded-2xl text-[11px] uppercase tracking-luxury opacity-40 hover:opacity-80 transition-luxury group"
               >
                 Telegram
+                <ArrowUpRight className="w-3.5 h-3.5 transition-luxury" strokeWidth={1.5} />
               </a>
               <a
-                href="https://www.instagram.com/rutz_prostranstvo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-foreground transition-luxury"
+                href="tel:+79833962244"
+                className="flex items-center justify-between px-5 py-4 border border-background/10 rounded-2xl text-[11px] uppercase tracking-luxury opacity-40 hover:opacity-80 transition-luxury group"
               >
-                Instagram
-              </a>
-              <a
-                href="https://vk.ru/darya_skopa13"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-foreground transition-luxury"
-              >
-                ВКонтакте
+                Позвонить
+                <ArrowUpRight className="w-3.5 h-3.5 transition-luxury" strokeWidth={1.5} />
               </a>
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="space-y-5">
-            <h4 className="text-xs uppercase tracking-luxury small-caps text-muted-foreground mb-5">
-              Запись
-            </h4>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Запись только после личной консультации
-            </p>
-            <Link
-              href="https://dikidi.net/1348080?p=0.pi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-foreground text-background px-6 py-3 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
-            >
-              Онлайн-запись
-            </Link>
-          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-border/40 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-muted-foreground">
-            © {year} RUTZ Пространство красоты. Все права защищены.
+        {/* ── Нижняя полоса ── */}
+        <div className="border-t border-background/[0.08] py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <p className="text-[11px] opacity-20">
+            © {year} RUTZ Пространство красоты
           </p>
           <Link
             href="/privacy"
-            className="text-xs text-muted-foreground hover:text-foreground transition-luxury"
+            className="text-[11px] opacity-20 hover:opacity-60 transition-luxury"
           >
             Политика конфиденциальности
           </Link>
         </div>
+
       </div>
     </footer>
   )

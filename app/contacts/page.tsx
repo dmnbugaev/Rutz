@@ -107,7 +107,7 @@ export default function ContactsPage() {
         <AnimateOnScroll animation="fade-in">
           <div className="relative h-[320px] sm:h-[420px] md:h-[500px] overflow-hidden">
             <Image
-              src="/image/IMG_9523.jpg"
+              src="/image/IMG_9526.jpg"
               alt="Пространство красоты RUTZ"
               fill
               className="object-cover grayscale-luxury"
@@ -155,13 +155,15 @@ export default function ContactsPage() {
             <AnimateOnScroll animation="slide-left">
               <div>
                 <h2 className="serif text-2xl sm:text-3xl mb-6">Как нас найти</h2>
-                <div className="relative h-[300px] sm:h-[400px] md:h-[460px] overflow-hidden border border-border mb-4">
+                <div className="overflow-hidden border border-border mb-4">
                   <iframe
-                    src="https://yandex.ru/map-widget/v1/?ll=83.7765%2C53.3476&z=17&pt=83.7765,53.3476,pm2rdm"
-                    className="absolute inset-0 w-full h-full"
+                    id="map_204174384"
                     frameBorder="0"
-                    allowFullScreen
-                    title="Карта RUTZ"
+                    width="100%"
+                    height="460"
+                    src="https://makemap.2gis.ru/widget?data=eJw1j1FvgkAQhP_L9lFiD44DIfHBYqomxKCJGtv4QGSll5wcOc62lvjfu0C7jzOzk29a0KZAg8UC9RWtkdhA_N6CvdcIMbxibm8GwYHa6BqN7f0WzlppQ_4TY657uZBvpVXdx07td4dyOiWpwOZsZG2lrsjIlrMRS5-35ToZseNyW9rFjKXzzWexeGHHdNPYZLRaJwE7zjfNmrQ07DJplkRf2VD4s6oK_IbYZf_3cKAcwO8d1h91pmVlKX_WNE5Wue1HTfg4CJhwuSP4mPuhz6MT_cuCCt1APE4OXPM6040ciFtQuYW4CwuPRZ4IheBMOKA6t2_zwokXBb7gvkt0Wl-pyqNO2q2VOnwgqrdeteaGj18tTW6k"
+                    sandbox="allow-modals allow-forms allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation"
+                    title="Карта RUTZ — 2GIS"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground">
