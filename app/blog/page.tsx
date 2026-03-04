@@ -48,8 +48,8 @@ export default async function BlogPage() {
     <div className="min-h-screen">
 
       {/* ── Hero ── */}
-      <section className="py-20 sm:py-28 md:py-36 border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+      <section className="min-h-[calc(100vh-57px)] flex items-center border-b border-border">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 w-full">
           <AnimateOnScroll animation="fade-up" className="text-center">
             <span className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4">
               Пространство красоты RUTZ
@@ -95,50 +95,51 @@ export default async function BlogPage() {
           ) : (
 
             /* Вертикальная лента */
-            <div className="divide-y divide-border/40">
+            <div className="space-y-6">
               {posts.map((post, i) => (
                 <AnimateOnScroll
                   key={post.id}
                   animation="fade-up"
                   delay={i * 60}
                 >
-                  <article className="py-10 first:pt-0">
+                  <article className="border border-border overflow-hidden">
 
-                    {/* Медиа-блок — без рамок, во всю ширину поста */}
+                    {/* Медиа-блок — во всю ширину поста, объект обрезается */}
                     {(post.photos.length > 0 || post.videos.length > 0) && (
-                      <div className="overflow-hidden mb-6">
-                        <MediaSlider
-                          photos={post.photos}
-                          videos={post.videos}
-                          priority={i === 0}
-                        />
-                      </div>
+                      <MediaSlider
+                        photos={post.photos}
+                        videos={post.videos}
+                        priority={i === 0}
+                      />
                     )}
 
-                    {/* Дата */}
-                    <time
-                      dateTime={post.date.toISOString()}
-                      className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4"
-                    >
-                      {formatDate(post.date)}
-                    </time>
+                    {/* Контент */}
+                    <div className="p-6 sm:p-8">
+                      {/* Дата */}
+                      <time
+                        dateTime={post.date.toISOString()}
+                        className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4"
+                      >
+                        {formatDate(post.date)}
+                      </time>
 
-                    {/* Текст поста */}
-                    {post.text && (
-                      <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-5 whitespace-pre-line">
-                        {truncate(post.text, 256)}
-                      </p>
-                    )}
+                      {/* Текст поста */}
+                      {post.text && (
+                        <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-5 whitespace-pre-line">
+                          {truncate(post.text, 256)}
+                        </p>
+                      )}
 
-                    {/* Ссылка на оригинал */}
-                    <Link
-                      href={post.messageUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury transition-luxury hover:gap-3 duration-300"
-                    >
-                      Смотреть в Telegram <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
-                    </Link>
+                      {/* Ссылка на оригинал */}
+                      <Link
+                        href={post.messageUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury transition-luxury hover:gap-3 duration-300"
+                      >
+                        Смотреть в Telegram <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+                      </Link>
+                    </div>
                   </article>
                 </AnimateOnScroll>
               ))}

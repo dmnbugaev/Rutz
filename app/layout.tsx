@@ -86,7 +86,7 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           <Header />
-          <main className="pt-[57px] sm:pt-[65px]">{children}</main>
+          <main className="pt-[57px] sm:pt-[65px] min-w-0 overflow-x-hidden">{children}</main>
           <Footer />
           <CookieConsent />
           <YandexMetrika />

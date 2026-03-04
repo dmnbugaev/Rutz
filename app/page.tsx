@@ -101,11 +101,6 @@ export default function HomePage() {
           </AnimateOnScroll>
         </div>
 
-        {/* Scroll indicator */}
-        <div aria-hidden="true" className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground">
-          <span className="text-[10px] uppercase tracking-widest">Scroll</span>
-          <div className="w-px h-8 bg-border" />
-        </div>
       </section>
 
       {/* ── Принцип работы (KEY MESSAGE) ── */}

@@ -58,8 +58,8 @@ export default function AboutPage() {
     <div className="min-h-screen">
 
       {/* ── Hero ── */}
-      <section className="py-20 sm:py-28 md:py-36 border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+      <section className="min-h-[calc(100vh-57px)] flex items-center border-b border-border">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 w-full">
           <AnimateOnScroll animation="fade-up" className="text-center">
             <span className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4">
               Пространство красоты RUTZ
@@ -162,8 +162,8 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">
             {expertise.map((item, i) => (
-              <AnimateOnScroll key={item.title} animation="fade-up" delay={i * 100}>
-                <div className="bg-background p-8 sm:p-10 space-y-4">
+              <AnimateOnScroll key={item.title} animation="fade-up" delay={i * 100} className="h-full">
+                <div className="bg-background p-8 sm:p-10 space-y-4 h-full">
                   <span className="text-xs text-muted-foreground tracking-luxury">
                     {String(i + 1).padStart(2, '0')}
                   </span>

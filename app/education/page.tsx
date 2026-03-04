@@ -62,8 +62,8 @@ export default function EducationPage() {
     <div className="min-h-screen">
 
       {/* ── Hero ── */}
-      <section className="relative py-20 sm:py-28 md:py-36 border-b border-border overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+      <section className="relative min-h-[calc(100vh-57px)] flex items-center border-b border-border overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 w-full">
           <AnimateOnScroll animation="fade-up" className="text-center">
             <span className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4">
               Для профессионалов
