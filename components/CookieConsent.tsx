@@ -13,6 +13,7 @@ export function CookieConsent() {
 
   const accept = () => {
     localStorage.setItem('cookie-consent', 'accepted')
+    window.dispatchEvent(new CustomEvent('cookie-consent-accepted'))
     setVisible(false)
   }
 

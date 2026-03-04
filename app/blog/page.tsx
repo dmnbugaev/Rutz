@@ -73,7 +73,7 @@ export default async function BlogPage() {
 
       {/* ── Лента постов ── */}
       <section className="py-16 sm:py-24 md:py-32">
-        <div className="max-w-[900px] mx-auto px-4 sm:px-8">
+        <div className="max-w-[680px] mx-auto px-4 sm:px-8">
           {posts.length === 0 ? (
 
             /* Заглушка */
@@ -95,52 +95,50 @@ export default async function BlogPage() {
           ) : (
 
             /* Вертикальная лента */
-            <div className="space-y-6">
+            <div className="divide-y divide-border/40">
               {posts.map((post, i) => (
                 <AnimateOnScroll
                   key={post.id}
                   animation="fade-up"
                   delay={i * 60}
                 >
-                  <article className="glass-card overflow-hidden">
+                  <article className="py-10 first:pt-0">
 
-                    {/* Медиа-блок */}
+                    {/* Медиа-блок — без рамок, во всю ширину поста */}
                     {(post.photos.length > 0 || post.videos.length > 0) && (
-                      <MediaSlider
-                        photos={post.photos}
-                        videos={post.videos}
-                        priority={i === 0}
-                      />
+                      <div className="overflow-hidden mb-6">
+                        <MediaSlider
+                          photos={post.photos}
+                          videos={post.videos}
+                          priority={i === 0}
+                        />
+                      </div>
                     )}
 
-                    {/* Контент карточки */}
-                    <div className="p-6 sm:p-8">
+                    {/* Дата */}
+                    <time
+                      dateTime={post.date.toISOString()}
+                      className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4"
+                    >
+                      {formatDate(post.date)}
+                    </time>
 
-                      {/* Дата */}
-                      <time
-                        dateTime={post.date.toISOString()}
-                        className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4"
-                      >
-                        {formatDate(post.date)}
-                      </time>
+                    {/* Текст поста */}
+                    {post.text && (
+                      <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-5 whitespace-pre-line">
+                        {truncate(post.text, 256)}
+                      </p>
+                    )}
 
-                      {/* Текст поста */}
-                      {post.text && (
-                        <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-5 whitespace-pre-line">
-                          {truncate(post.text, 256)}
-                        </p>
-                      )}
-
-                      {/* Ссылка на оригинал */}
-                      <Link
-                        href={post.messageUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury transition-luxury hover:gap-3 duration-300"
-                      >
-                        Смотреть в Telegram <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
-                      </Link>
-                    </div>
+                    {/* Ссылка на оригинал */}
+                    <Link
+                      href={post.messageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury transition-luxury hover:gap-3 duration-300"
+                    >
+                      Смотреть в Telegram <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+                    </Link>
                   </article>
                 </AnimateOnScroll>
               ))}

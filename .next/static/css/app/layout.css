@@ -730,6 +730,9 @@ video {
 .aspect-\[3\/4\] {
   aspect-ratio: 3/4;
 }
+.aspect-\[4\/3\] {
+  aspect-ratio: 4/3;
+}
 .h-1 {
   height: 0.25rem;
 }
@@ -1105,6 +1108,9 @@ video {
 }
 .divide-border > :not([hidden]) ~ :not([hidden]) {
   border-color: hsl(var(--border));
+}
+.divide-border\/40 > :not([hidden]) ~ :not([hidden]) {
+  border-color: hsl(var(--border) / 0.4);
 }
 .self-stretch {
   align-self: stretch;
@@ -1712,6 +1718,9 @@ img {
 }
 .placeholder\:text-muted-foreground::placeholder {
   color: hsl(var(--muted-foreground));
+}
+.first\:pt-0:first-child {
+  padding-top: 0px;
 }
 .last\:border-0:last-child {
   border-width: 0px;

@@ -89,31 +89,33 @@ export default function ContactsPage() {
       {/* ── Hero ── */}
       <section className="py-20 sm:py-28 md:py-36 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <AnimateOnScroll animation="fade-up">
-              <span className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4">
-                Связаться
-              </span>
-              <h1 className="serif text-5xl sm:text-6xl md:text-7xl mb-6">Контакты</h1>
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                Запись только после личной консультации. Напишите мне — и мы
-                обсудим все детали.
-              </p>
-            </AnimateOnScroll>
-            <AnimateOnScroll animation="slide-right">
-              <div className="relative h-[400px] sm:h-[520px] overflow-hidden gallery-frame">
-                <Image
-                  src="/image/IMG_9523.jpg"
-                  alt="Пространство красоты RUTZ"
-                  fill
-                  className="object-cover grayscale-luxury"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-            </AnimateOnScroll>
-          </div>
+          <AnimateOnScroll animation="fade-up" className="text-center">
+            <span className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4">
+              Связаться
+            </span>
+            <h1 className="serif text-5xl sm:text-6xl md:text-7xl mb-6">Контакты</h1>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Запись только после личной консультации. Напишите мне — и мы
+              обсудим все детали.
+            </p>
+          </AnimateOnScroll>
         </div>
+      </section>
+
+      {/* ── Фото ── */}
+      <section className="border-b border-border">
+        <AnimateOnScroll animation="fade-in">
+          <div className="relative h-[320px] sm:h-[420px] md:h-[500px] overflow-hidden">
+            <Image
+              src="/image/IMG_9523.jpg"
+              alt="Пространство красоты RUTZ"
+              fill
+              className="object-cover grayscale-luxury"
+              sizes="100vw"
+              priority
+            />
+          </div>
+        </AnimateOnScroll>
       </section>
 
       {/* ── Контактные карточки ── */}

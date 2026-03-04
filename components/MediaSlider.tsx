@@ -53,7 +53,7 @@ export function MediaSlider({ photos, videos, priority = false }: MediaSliderPro
     return (
       <>
         <div
-          className="relative aspect-[3/4] overflow-hidden cursor-zoom-in"
+          className="relative aspect-[4/3] overflow-hidden cursor-zoom-in"
           onClick={() => setLightbox(items[0].url)}
         >
           <Image
@@ -92,7 +92,7 @@ export function MediaSlider({ photos, videos, priority = false }: MediaSliderPro
   // Одиночное видео
   if (items.length === 1 && items[0].type === 'video') {
     return (
-      <div className="relative aspect-[3/4] bg-black">
+      <div className="relative aspect-[4/3] bg-black">
         <video
           src={items[0].url}
           controls
@@ -107,7 +107,7 @@ export function MediaSlider({ photos, videos, priority = false }: MediaSliderPro
   return (
     <>
       <div
-        className="relative aspect-[3/4] overflow-hidden select-none bg-muted"
+        className="relative aspect-[4/3] overflow-hidden select-none bg-muted"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
