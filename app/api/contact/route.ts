@@ -16,16 +16,23 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    if (name.length > 100 || phone.length > 30 || (message && message.length > 2000)) {
+      return NextResponse.json(
+        { error: 'Превышен допустимый размер поля' },
+        { status: 400 }
+      )
+    }
+
     // Отправка уведомления в Telegram
     const token = process.env.TELEGRAM_BOT_TOKEN
     const chatId = process.env.TELEGRAM_ADMIN_CHAT_ID
 
     if (token && chatId) {
       const text =
-        `📋 *Новая заявка с сайта RUTZ*\n\n` +
-        `*Имя:* ${name}\n` +
-        `*Телефон:* ${phone}\n` +
-        `*Сообщение:* ${message || '—'}`
+        `📋 Новая заявка с сайта RUTZ\n\n` +
+        `Имя: ${name}\n` +
+        `Телефон: ${phone}\n` +
+        `Сообщение: ${message || '—'}`
 
       await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: 'POST',
@@ -33,7 +40,6 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           chat_id: chatId,
           text,
-          parse_mode: 'Markdown',
         }),
       })
     }

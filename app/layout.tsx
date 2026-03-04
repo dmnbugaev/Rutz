@@ -51,13 +51,16 @@ export const metadata: Metadata = {
     description:
       'Колорист с 10-летним опытом. Выход из нежелательного цвета, сложные техники окрашивания, обучение. Барнаул.',
     url: 'https://rutz.beauty',
+    images: [{ url: '/image/IMG_9513.jpg', width: 1200, alt: 'RUTZ Пространство красоты' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'RUTZ — Пространство красоты | Дарья Рутц, колорист Барнаул',
     description:
       'Колорист с 10-летним опытом. Выход из нежелательного цвета, сложные техники окрашивания, обучение. Барнаул.',
+    images: ['/image/IMG_9513.jpg'],
   },
+  icons: { icon: '/icon.svg' },
   robots: {
     index: true,
     follow: true,

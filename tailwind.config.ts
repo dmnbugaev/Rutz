@@ -50,8 +50,6 @@ const config: Config = {
         'fade-up': 'fadeUp 0.8s ease forwards',
         'slide-in-left': 'slideInLeft 0.8s ease forwards',
         'slide-in-right': 'slideInRight 0.8s ease forwards',
-        'float': 'float 6s ease-in-out infinite',
-        'float-delayed': 'floatDelayed 8s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -69,14 +67,6 @@ const config: Config = {
         slideInRight: {
           from: { opacity: '0', transform: 'translateX(30px)' },
           to: { opacity: '1', transform: 'translateX(0)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' },
-        },
-        floatDelayed: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(12px)' },
         },
       },
     },

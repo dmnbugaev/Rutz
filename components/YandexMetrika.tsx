@@ -3,12 +3,11 @@
 import { useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 
-// Замените на ваш реальный номер счётчика из кабинета Яндекс.Метрики
-const COUNTER_ID = 12345678
+const COUNTER_ID = 107135040
 
 declare global {
   interface Window {
-    ym: (id: number, action: string, ...args: unknown[]) => void
+    ym: ((id: number, action: string, ...args: unknown[]) => void) & { a?: unknown[]; l?: number }
   }
 }
 
@@ -16,12 +15,12 @@ function initMetrika() {
   if (typeof window === 'undefined') return
   if (document.querySelector('script[src="https://mc.yandex.ru/metrika/tag.js"]')) return
 
-  ;(window as any).ym =
-    (window as any).ym ||
-    function (...args: unknown[]) {
-      ;((window as any).ym.a = (window as any).ym.a || []).push(args)
-    }
-  ;(window as any).ym.l = +new Date()
+  window.ym =
+    window.ym ||
+    Object.assign(
+      (...args: unknown[]) => { (window.ym.a ??= []).push(args) },
+      { l: +new Date() },
+    )
 
   const script = document.createElement('script')
   script.async = true
@@ -40,7 +39,6 @@ export function YandexMetrika() {
   const pathname = usePathname()
   const initialized = useRef(false)
 
-  // Инициализируем метрику только после согласия с cookies
   useEffect(() => {
     if (localStorage.getItem('cookie-consent') === 'accepted') {
       initMetrika()
@@ -56,7 +54,6 @@ export function YandexMetrika() {
     return () => window.removeEventListener('cookie-consent-accepted', handler)
   }, [])
 
-  // Трекаем переходы между страницами
   useEffect(() => {
     if (!initialized.current) return
     window.ym?.(COUNTER_ID, 'hit', pathname)
