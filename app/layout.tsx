@@ -123,7 +123,7 @@ export default function RootLayout({
                 '@type': 'OpeningHoursSpecification',
                 dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                 opens: '10:00',
-                closes: '21:00',
+                closes: '20:00',
               },
               priceRange: '₽₽',
               currenciesAccepted: 'RUB',

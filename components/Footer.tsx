@@ -102,7 +102,7 @@ export function Footer() {
               <div>
                 <p className="text-[9px] uppercase tracking-luxury opacity-25 mb-2">Часы работы</p>
                 <p className="text-[13px] leading-relaxed opacity-60">
-                  Пн – Вс: 10:00 – 21:00<br />
+                  Пн – Вс: 10:00 – 20:00<br />
                   <span className="opacity-60">По предварительной записи</span>
                 </p>
               </div>
