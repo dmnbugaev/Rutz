@@ -76,21 +76,67 @@ export default async function BlogPage() {
         <div className="max-w-[680px] mx-auto px-4 sm:px-8">
           {posts.length === 0 ? (
 
-            /* Заглушка */
-            <AnimateOnScroll animation="fade-up" className="text-center max-w-xl mx-auto">
-              <p className="text-muted-foreground leading-relaxed mb-8">
-                Посты из Telegram-канала появятся здесь автоматически.
-                Пока заходите напрямую в канал.
-              </p>
-              <Link
-                href="https://t.me/rutzprostranstvo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
-              >
-                Открыть Telegram-канал <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
-              </Link>
-            </AnimateOnScroll>
+            /* Демо-статьи (SEO) */
+            <div className="space-y-10">
+              {[
+                {
+                  title: 'Что такое альтернативная колористика?',
+                  date: '2025-03-01',
+                  dateLabel: '1 марта 2025',
+                  text: 'Альтернативная колористика — это совокупность методов окрашивания, позволяющих добиться нужного цвета без агрессивного обесцвечивания. Главное преимущество — минимальный стресс для волос. Подходит для коррекции нежелательных пигментов, работы с сединой и сложных переходов. После консультации Дарья составит индивидуальный план, который подойдёт именно вашим волосам.',
+                },
+                {
+                  title: 'Как подготовиться к окрашиванию?',
+                  date: '2025-02-15',
+                  dateLabel: '15 февраля 2025',
+                  text: 'Перед процедурой окрашивания важно не мыть голову за 1–2 дня — натуральный жир защищает кожу головы. Расскажите мастеру всю историю окрашивания: какие красители использовались, когда была последняя процедура. Это поможет избежать сюрпризов и добиться предсказуемого результата. Именно поэтому каждая работа начинается с консультации.',
+                },
+                {
+                  title: 'Почему нельзя вывести чёрный цвет дома?',
+                  date: '2025-01-20',
+                  dateLabel: '20 января 2025',
+                  text: 'Чёрная краска содержит большое количество пигмента, который глубоко проникает в структуру волоса. Домашние средства для осветления часто повреждают волос, но не удаляют пигмент полностью. В результате — оранжевый или красный оттенок и пересушенные волосы. Профессиональный выход из нежелательного цвета с Дарьей Рутц — без порошка и без потери качества.',
+                },
+              ].map((article, i) => (
+                <AnimateOnScroll key={article.title} animation="fade-up" delay={i * 80}>
+                  <article className="border border-border overflow-hidden">
+                    <div className="p-6 sm:p-8">
+                      <time
+                        dateTime={article.date}
+                        className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4"
+                      >
+                        {article.dateLabel}
+                      </time>
+                      <h2 className="serif text-xl sm:text-2xl mb-4">{article.title}</h2>
+                      <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-5">
+                        {article.text}
+                      </p>
+                      <Link
+                        href="https://dikidi.net/1348080?p=0.pi"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury transition-luxury hover:gap-3 duration-300"
+                      >
+                        Записаться на консультацию <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+                      </Link>
+                    </div>
+                  </article>
+                </AnimateOnScroll>
+              ))}
+
+              <AnimateOnScroll animation="fade-up">
+                <div className="text-center pt-4">
+                  <Link
+                    href="https://t.me/rutzprostranstvo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury transition-luxury hover:gap-4 duration-300 text-muted-foreground"
+                  >
+                    Больше статей в Telegram-канале <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+                  </Link>
+                </div>
+              </AnimateOnScroll>
+            </div>
 
           ) : (
 
@@ -167,10 +213,12 @@ export default async function BlogPage() {
                 Telegram-канал <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
               <Link
-                href="/contacts"
+                href="https://dikidi.net/1348080?p=0.pi"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border border-border/60 px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
               >
-                Записаться <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+                Записаться <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
             </div>
           </AnimateOnScroll>

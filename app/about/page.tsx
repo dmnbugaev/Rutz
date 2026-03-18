@@ -118,13 +118,14 @@ export default function AboutPage() {
                 <div className="space-y-5 text-muted-foreground leading-relaxed">
                   <p>
                     В профессию пришла с нуля — без наставников и финансовой поддержки.
-                    Первые годы работала одна в салонах, набивая шишки и вкладывая каждую
-                    копейку в обучение.
+                    За 10 лет прошла обучение у ведущих колористов России, освоила техники
+                    альтернативной колористики, что позволяет работать даже со сложными
+                    случаями без ущерба для волос.
                   </p>
                   <p>
-                    Прошла путь от испорченных волос до идеального цвета через личные
-                    ошибки. Именно этот опыт позволяет давать клиентам не эксперимент,
-                    а гарантированный результат.
+                    Вложила более 1 000 000 рублей в профессиональное развитие — чтобы
+                    каждый клиент получал не эксперимент, а гарантированный результат,
+                    основанный на глубоких знаниях.
                   </p>
                   <blockquote className="border-l-4 border-foreground pl-6 py-2 my-6">
                     <p className="serif text-xl italic">
@@ -139,7 +140,9 @@ export default function AboutPage() {
                   </p>
                 </div>
                 <Link
-                  href="/contacts"
+                  href="https://dikidi.net/1348080?p=0.pi"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
                 >
                   Записаться на консультацию
@@ -221,8 +224,9 @@ export default function AboutPage() {
               Я не работаю «с листа» или по фото из WhatsApp.
             </p>
             <p className="text-base sm:text-lg leading-relaxed opacity-80 mb-8">
-              Только очная консультация. Фото врёт — камера искажает цвет,
-              а история ваших волос видна только при личном осмотре.
+              Первичная консультация возможна онлайн или в салоне.
+              Окончательное решение о цвете принимается при личной встрече —
+              камера искажает цвет, а история волос видна только при осмотре.
             </p>
             <Link
               href="/services"

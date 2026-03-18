@@ -104,7 +104,7 @@ export default function ServicesPage() {
               Прайс-лист
             </span>
             <h1 className="serif text-5xl sm:text-6xl md:text-7xl mb-6">
-              Услуги
+              Услуги колориста в Барнауле
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Альтернативная колористика от эксперта с 10-летним опытом.
@@ -114,21 +114,23 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── Важное уведомление ── */}
+      {/* ── Альтернативная колористика — пояснение ── */}
       <section className="border-b border-border bg-accent/30">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-10 sm:py-14">
           <AnimateOnScroll animation="fade-up">
-            <div className="max-w-3xl">
+            <div className="max-w-3xl space-y-8">
               <div className="flex gap-6 items-start">
                 <div className="w-0.5 bg-foreground self-stretch flex-shrink-0" />
                 <div>
-                  <h2 className="serif text-2xl sm:text-3xl mb-4">Важно!</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-2">
-                    Я не работаю вслепую. Чтобы результат превзошёл ожидания, а волосы остались здоровыми,
-                    мы начинаем с личной консультации (онлайн или в салоне).
+                  <h2 className="serif text-2xl sm:text-3xl mb-4">Что такое альтернативная колористика?</h2>
+                  <p className="text-muted-foreground leading-relaxed mb-3">
+                    Альтернативная колористика — это методы окрашивания, которые позволяют добиться желаемого
+                    цвета без обесцвечивания, с минимальным повреждением волос. Подходит для сложных случаев:
+                    коррекция цвета после неудачного окрашивания, мягкое осветление, работа с сединой и т.д.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    Только после анализа ваших волос и обсуждения всех деталей я бронирую время на окрашивание.
+                    Дарья — эксперт альтернативной колористики с 10-летним опытом. Все процедуры только
+                    после личной консультации: онлайн или в салоне.
                   </p>
                 </div>
               </div>

@@ -13,7 +13,7 @@ const navLinks = [
 
 const socials = [
   { name: 'Telegram', url: 'https://t.me/rutzprostranstvo' },
-  { name: 'Instagram', url: 'https://www.instagram.com/rutz_prostranstvo' },
+  { name: 'Instagram*', url: 'https://www.instagram.com/rutz_prostranstvo' },
   { name: 'ВКонтакте', url: 'https://vk.ru/darya_skopa13' },
 ]
 
@@ -56,6 +56,9 @@ export function Footer() {
                   <ArrowUpRight className="w-2.5 h-2.5" strokeWidth={1.5} />
                 </a>
               ))}
+              <p className="text-[9px] opacity-20 leading-relaxed mt-1">
+                * Meta признана экстремистской организацией в РФ
+              </p>
             </div>
           </div>
 
@@ -150,16 +153,21 @@ export function Footer() {
         </div>
 
         {/* ── Нижняя полоса ── */}
-        <div className="border-t border-background/[0.08] py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+        <div className="border-t border-background/[0.08] py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <p className="text-[11px] opacity-20">
             © {year} RUTZ Пространство красоты
           </p>
-          <Link
-            href="/privacy"
-            className="text-[11px] opacity-20 hover:opacity-60 transition-luxury"
-          >
-            Политика конфиденциальности
-          </Link>
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            <Link href="/privacy" className="text-[11px] opacity-20 hover:opacity-60 transition-luxury">
+              Политика конфиденциальности
+            </Link>
+            <Link href="/terms" className="text-[11px] opacity-20 hover:opacity-60 transition-luxury">
+              Пользовательское соглашение
+            </Link>
+            <Link href="/consent" className="text-[11px] opacity-20 hover:opacity-60 transition-luxury">
+              Согласие на обработку данных
+            </Link>
+          </div>
         </div>
 
       </div>

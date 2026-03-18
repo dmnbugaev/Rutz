@@ -66,7 +66,10 @@ export default function HomePage() {
             />
           </div>
 
-          <AnimateOnScroll animation="fade-up" delay={300}>
+          <AnimateOnScroll animation="fade-up" delay={200}>
+            <h1 className="sr-only">
+              Колорист в Барнауле с 10-летним опытом | RUTZ Пространство красоты
+            </h1>
             <p className="text-xs sm:text-sm uppercase tracking-luxury text-muted-foreground mb-10 sm:mb-14">
               Пространство красоты · Барнаул · 10 лет экспертизы
             </p>
@@ -127,7 +130,9 @@ export default function HomePage() {
                 ))}
               </div>
               <Link
-                href="/contacts"
+                href="https://dikidi.net/1348080?p=0.pi"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury hover:gap-4 transition-all duration-300"
               >
                 Записаться на консультацию

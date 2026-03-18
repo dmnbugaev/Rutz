@@ -69,11 +69,12 @@ export default function EducationPage() {
               Для профессионалов
             </span>
             <h1 className="serif text-5xl sm:text-6xl md:text-7xl mb-6">
-              Обучение
+              Обучение колористике в Барнауле
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Альтернативная колористика от эксперта с 10-летним опытом.
-              Только после бесплатного собеседования.
+              Обучение возможно только после бесплатного собеседования, на котором
+              мы определим ваш уровень и подберём программу.
             </p>
           </AnimateOnScroll>
         </div>

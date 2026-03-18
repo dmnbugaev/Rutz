@@ -133,7 +133,7 @@ function extractVideos(block: string): string[] {
   }
 
   // Дедупликация — один и тот же src может встречаться несколько раз
-  return [...new Set(videos)]
+  return Array.from(new Set(videos))
 }
 
 function parsePostsFromHtml(html: string, channel: string, limit: number): TelegramPost[] {

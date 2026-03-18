@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 
 export const metadata: Metadata = {
-  title: 'Политика конфиденциальности',
-  description: 'Политика конфиденциальности пространства красоты RUTZ.',
-  robots: { index: false, follow: false },
+  title: 'Политика конфиденциальности | RUTZ',
+  description: 'Политика конфиденциальности пространства красоты RUTZ. Обработка и защита персональных данных.',
+  alternates: { canonical: 'https://rutz.beauty/privacy' },
 }
 
 export default function PrivacyPage() {

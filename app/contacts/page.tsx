@@ -53,9 +53,9 @@ const contacts = [
 ]
 
 const socials = [
-  { name: 'Telegram', url: 'https://t.me/rutzprostranstvo' },
-  { name: 'Instagram', url: 'https://www.instagram.com/rutz_prostranstvo' },
-  { name: 'ВКонтакте', url: 'https://vk.ru/darya_skopa13' },
+  { name: 'Telegram', url: 'https://t.me/rutzprostranstvo', note: null },
+  { name: 'Instagram*', url: 'https://www.instagram.com/rutz_prostranstvo', note: '* Meta признана экстремистской организацией в РФ' },
+  { name: 'ВКонтакте', url: 'https://vk.ru/darya_skopa13', note: null },
 ]
 
 const bookingOptions = [
@@ -182,6 +182,9 @@ export default function ContactsPage() {
                     </Link>
                   ))}
                 </div>
+                <p className="text-[11px] text-muted-foreground/60 mt-3">
+                  * Meta признана экстремистской организацией в РФ
+                </p>
               </div>
             </AnimateOnScroll>
 
@@ -229,20 +232,30 @@ export default function ContactsPage() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 text-center">
           <AnimateOnScroll animation="fade-up">
             <h2 className="serif text-3xl sm:text-4xl md:text-5xl mb-6">
-              Хотите удобнее?
+              Запишитесь прямо сейчас
             </h2>
             <p className="opacity-70 mb-8 max-w-xl mx-auto leading-relaxed">
-              Запишитесь онлайн через систему бронирования Dikidi —
-              выберите удобное время сами
+              Выберите удобный мессенджер или запишитесь онлайн через систему
+              бронирования Dikidi — выберите время сами, без звонков
             </p>
-            <Link
-              href="https://dikidi.net/1348080?p=0.pi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-background/40 text-background px-10 sm:px-14 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
-            >
-              Онлайн-запись <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="https://dikidi.net/1348080?p=0.pi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-background text-foreground px-10 sm:px-14 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-background/90"
+              >
+                Онлайн-запись <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="https://t.me/rutzprostranstvo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-background/40 text-background px-10 sm:px-14 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
+              >
+                Написать в Telegram <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+            </div>
           </AnimateOnScroll>
         </div>
       </section>

@@ -11,6 +11,9 @@ const staticPages = [
   { url: '/reviews', priority: 0.7, changeFrequency: 'weekly' as const },
   { url: '/blog', priority: 0.8, changeFrequency: 'daily' as const },
   { url: '/contacts', priority: 0.7, changeFrequency: 'monthly' as const },
+  { url: '/privacy', priority: 0.3, changeFrequency: 'yearly' as const },
+  { url: '/terms', priority: 0.3, changeFrequency: 'yearly' as const },
+  { url: '/consent', priority: 0.3, changeFrequency: 'yearly' as const },
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

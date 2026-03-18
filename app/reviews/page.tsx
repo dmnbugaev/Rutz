@@ -177,6 +177,36 @@ export default function ReviewsPage() {
         </div>
       </section>
 
+      {/* ── Читать на платформах ── */}
+      <section className="py-12 sm:py-16 border-t border-border bg-accent/20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <AnimateOnScroll animation="fade-up">
+            <div className="text-center mb-8">
+              <h2 className="serif text-2xl sm:text-3xl mb-3">Читайте отзывы на картах</h2>
+              <p className="text-muted-foreground text-sm">Рейтинг RUTZ на популярных платформах</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="https://yandex.ru/maps/?text=RUTZ+Барнаул+Павловский+тракт+162"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+              >
+                Яндекс.Карты <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="https://2gis.ru/barnaul/search/RUTZ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-border/60 px-8 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
+              >
+                2ГИС <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section className="py-16 sm:py-24 border-t border-border bg-foreground text-background">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 text-center">
@@ -185,16 +215,27 @@ export default function ReviewsPage() {
               Хотите поделиться опытом?
             </h2>
             <p className="opacity-70 mb-8 max-w-xl mx-auto leading-relaxed">
-              Напишите нам в Telegram — ваш отзыв поможет другим клиентам сделать правильный выбор
+              Ваш отзыв на Яндекс.Картах помогает другим клиентам сделать правильный выбор
+              и повышает рейтинг мастера
             </p>
-            <Link
-              href="https://t.me/rutzprostranstvo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-background/40 text-background px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
-            >
-              Написать отзыв <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="https://yandex.ru/maps/?text=RUTZ+Барнаул+Павловский+тракт+162"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-background text-foreground px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-background/90"
+              >
+                Оставить отзыв на Яндекс.Картах <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="https://2gis.ru/barnaul/search/RUTZ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-background/40 text-background px-10 py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-background hover:text-foreground"
+              >
+                Оставить отзыв на 2ГИС <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+            </div>
           </AnimateOnScroll>
         </div>
       </section>
