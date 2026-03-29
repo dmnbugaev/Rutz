@@ -99,10 +99,10 @@ export default function AboutPage() {
             <AnimateOnScroll animation="slide-left">
               <div className="relative h-[450px] sm:h-[550px] md:h-[650px] overflow-hidden gallery-frame">
                 <Image
-                  src="/image/IMG_9494.jpg"
+                  src={`/image/new_image/${encodeURIComponent('фото самой Дарьи Рутц.JPG')}`}
                   alt="Дарья Рутц — колорист"
                   fill
-                  className="object-cover grayscale-luxury"
+                  className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
                 />
@@ -209,6 +209,54 @@ export default function AboutPage() {
                 </AnimateOnScroll>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Сертификаты ── */}
+      <section className="py-16 sm:py-24 md:py-32 border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <AnimateOnScroll animation="fade-up">
+            <div className="text-center mb-10 sm:mb-14">
+              <span className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4">
+                Документы
+              </span>
+              <h2 className="serif text-3xl sm:text-4xl md:text-5xl mb-4">
+                Дипломы и сертификаты
+              </h2>
+              <p className="text-muted-foreground">
+                Подтверждение профессионального уровня
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              {
+                src: `/image/new_image/${encodeURIComponent('сертефикаты')}/IMG_1369.JPG`,
+                alt: 'Диплом PinCode — От топового мастера до салона',
+              },
+              {
+                src: `/image/new_image/${encodeURIComponent('сертефикаты')}/IMG_2557.jpg`,
+                alt: 'Диплом — программа наставничества Навигатор, преподавание и мастер-классы',
+              },
+              {
+                src: `/image/new_image/${encodeURIComponent('сертефикаты')}/IMG_2558.jpg`,
+                alt: 'Сертификат — Смывка из чёрного',
+              },
+            ].map((cert, i) => (
+              <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
+                <div className="relative aspect-[4/3] overflow-hidden gallery-frame">
+                  <Image
+                    src={cert.src}
+                    alt={cert.alt}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                  />
+                </div>
+              </AnimateOnScroll>
+            ))}
           </div>
         </div>
       </section>

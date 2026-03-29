@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Images } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Услуги и цены — Окрашивание, Балаяж, AirTouch Барнаул',
@@ -33,6 +33,7 @@ const categories = [
     note: 'Без фото из WhatsApp · Только очно',
     image: '/image/IMG_9495.jpg',
     imageAlt: 'Консультация',
+    portfolioHref: null,
     services: [
       { name: 'Диагностика структуры волос', price: 'Бесплатно' },
       { name: 'Проверка на «сюрпризы» (старый пигмент)', price: 'Бесплатно' },
@@ -47,6 +48,7 @@ const categories = [
     note: 'УХОД + УКЛАДКА — включены',
     image: '/image/IMG_9488.jpg',
     imageAlt: 'Окрашивание волос',
+    portfolioHref: '/portfolio#matting',
     services: [
       { name: 'Окрашивание / Тонирование', price: 'от 10 000 ₽' },
       { name: 'Альтернатива (матирование, камуфляж, баня)', price: 'от 10 000 ₽' },
@@ -59,6 +61,7 @@ const categories = [
     note: 'УХОД + УКЛАДКА — включены',
     image: '/image/IMG_9501.jpg',
     imageAlt: 'Техники окрашивания',
+    portfolioHref: '/portfolio#techniques',
     services: [
       { name: 'AirTouch', price: 'от 19 500 ₽' },
       { name: 'Мелирование (рельеф)', price: 'от 19 500 ₽' },
@@ -73,6 +76,7 @@ const categories = [
     note: 'Без порошка · Без потери качества',
     image: '/image/IMG_9497.jpg',
     imageAlt: 'Выход из нежелательного цвета',
+    portfolioHref: '/portfolio#pigment',
     services: [
       { name: 'Выход из нежелательного цвета', price: 'от 25 000 ₽' },
     ],
@@ -84,6 +88,7 @@ const categories = [
     note: null,
     image: '/image/IMG_9525.jpg',
     imageAlt: 'Стрижка',
+    portfolioHref: null,
     services: [
       { name: 'Стрижка', price: '3 000 ₽' },
       { name: 'Укладка', price: 'от 3 000 ₽' },
@@ -189,14 +194,25 @@ export default function ServicesPage() {
                       ))}
                     </div>
 
-                    <Link
-                      href="https://dikidi.net/1348080?p=0.pi"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury transition-luxury hover:gap-4 duration-300"
-                    >
-                      Записаться <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
-                    </Link>
+                    <div className="flex flex-wrap items-center gap-6">
+                      <Link
+                        href="https://dikidi.net/1348080?p=0.pi"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury transition-luxury hover:gap-4 duration-300"
+                      >
+                        Записаться <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+                      </Link>
+                      {cat.portfolioHref && (
+                        <Link
+                          href={cat.portfolioHref}
+                          className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-muted-foreground transition-luxury hover:text-foreground hover:gap-4 duration-300"
+                        >
+                          <Images className="w-4 h-4" strokeWidth={1.5} />
+                          Смотреть работы
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </AnimateOnScroll>
               </div>

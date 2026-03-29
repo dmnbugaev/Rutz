@@ -5,6 +5,7 @@ import { ArrowUpRight } from 'lucide-react'
 const navLinks = [
   { name: 'Обо мне', path: '/about' },
   { name: 'Услуги и цены', path: '/services' },
+  { name: 'Портфолио', path: '/portfolio' },
   { name: 'Обучение', path: '/education' },
   { name: 'Отзывы', path: '/reviews' },
   { name: 'Блог', path: '/blog' },

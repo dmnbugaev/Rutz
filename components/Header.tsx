@@ -11,6 +11,7 @@ const navItems = [
   { name: 'Главная', path: '/' },
   { name: 'Обо мне', path: '/about' },
   { name: 'Услуги', path: '/services' },
+  { name: 'Портфолио', path: '/portfolio' },
   { name: 'Обучение', path: '/education' },
   { name: 'Отзывы', path: '/reviews' },
   { name: 'Блог', path: '/blog' },

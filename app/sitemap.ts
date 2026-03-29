@@ -7,6 +7,7 @@ const staticPages = [
   { url: '/', priority: 1.0, changeFrequency: 'weekly' as const },
   { url: '/about', priority: 0.8, changeFrequency: 'monthly' as const },
   { url: '/services', priority: 0.9, changeFrequency: 'monthly' as const },
+  { url: '/portfolio', priority: 0.8, changeFrequency: 'monthly' as const },
   { url: '/education', priority: 0.8, changeFrequency: 'monthly' as const },
   { url: '/reviews', priority: 0.7, changeFrequency: 'weekly' as const },
   { url: '/blog', priority: 0.8, changeFrequency: 'daily' as const },
