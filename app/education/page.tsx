@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 import { ArrowRight, ArrowUpRight, Check, CheckCircle, GraduationCap } from 'lucide-react'
 import { TEACHERS } from '@/lib/constants'
-
+//sdfsdf
 export const metadata: Metadata = {
   title: 'Обучение колористике у Дарьи Рутц — Барнаул и онлайн',
   description:
