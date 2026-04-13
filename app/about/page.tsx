@@ -99,7 +99,7 @@ export default function AboutPage() {
             <AnimateOnScroll animation="slide-left">
               <div className="relative h-[450px] sm:h-[550px] md:h-[650px] overflow-hidden gallery-frame">
                 <Image
-                  src={`/image/new_image/${encodeURIComponent('фото самой Дарьи Рутц.JPG')}`}
+                  src="/images/about/daria-rutz.jpg"
                   alt="Дарья Рутц — колорист"
                   fill
                   className="object-cover object-top"
@@ -117,10 +117,7 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-5 text-muted-foreground leading-relaxed">
                   <p>
-                    В профессию пришла с нуля — без наставников и финансовой поддержки.
-                    За 10 лет прошла обучение у ведущих колористов России, освоила техники
-                    альтернативной колористики, что позволяет работать даже со сложными
-                    случаями без ущерба для волос.
+                    Я прошла путь в профессию с самого нуля, полагаясь только на собственное упорство и постоянную практику. Годы глубокого погружения в колористику и огромная насмотренность позволяют мне сегодня не экспериментировать, а гарантировать результат. Я убеждена, что шаблонных решений не существует: каждый клиент уникален, поэтому я создаю индивидуальные рецепты окрашивания, которые подчеркивают именно вашу природную красоту.
                   </p>
                   <p>
                     Вложила более 1 000 000 рублей в профессиональное развитие — чтобы
@@ -233,15 +230,15 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
               {
-                src: `/image/new_image/${encodeURIComponent('сертефикаты')}/IMG_1369.JPG`,
+                src: '/images/certificates/IMG_1369.jpg',
                 alt: 'Диплом PinCode — От топового мастера до салона',
               },
               {
-                src: `/image/new_image/${encodeURIComponent('сертефикаты')}/IMG_2557.jpg`,
+                src: '/images/certificates/IMG_2557.jpg',
                 alt: 'Диплом — программа наставничества Навигатор, преподавание и мастер-классы',
               },
               {
-                src: `/image/new_image/${encodeURIComponent('сертефикаты')}/IMG_2558.jpg`,
+                src: '/images/certificates/IMG_2558.jpg',
                 alt: 'Сертификат — Смывка из чёрного',
               },
             ].map((cert, i) => (

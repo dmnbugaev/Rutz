@@ -122,7 +122,7 @@ export default function ReviewsPage() {
         <AnimateOnScroll animation="fade-in">
           <div className="relative h-[320px] sm:h-[420px] md:h-[500px] overflow-hidden">
             <Image
-              src="/image/IMG_9519.jpg"
+              src="/images/portfolio/IMG_9519.jpg"
               alt="Работы RUTZ"
               fill
               className="object-cover grayscale-luxury"

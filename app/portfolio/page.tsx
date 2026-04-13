@@ -26,53 +26,51 @@ export const metadata: Metadata = {
   },
 }
 
-// ── Хелперы для путей к изображениям ──
-const E = encodeURIComponent
-const pig = (f: string) => `/image/new_image/${E('выход из нежелательного пигмента')}/${f}`
-const mat = (f: string) => `/image/new_image/${E('Матирование')}/${f}`
-const tec = (f: string) => `/image/new_image/${E('окрашивание техники')}/${f}`
+const pig = (f: string) => `/images/pigment-removal/${f}`
+const mat = (f: string) => `/images/matting/${f}`
+const tec = (f: string) => `/images/coloring-techniques/${f}`
 
 // ── Пары До/После ──
 
 const pigmentPairs = [
   { before: pig('IMG_2560.jpg'), after: pig('IMG_2559.jpg') },
-  { before: pig('IMG_1647.JPG'), after: pig('IMG_1663.JPG') },
-  { before: pig('IMG_6851.JPG'), after: pig('IMG_6906.JPG') },
-  { before: pig('IMG_7597.JPG'), after: pig('IMG_7600.JPG') },
+  { before: pig('IMG_1647.jpg'), after: pig('IMG_1663.jpg') },
+  { before: pig('IMG_6851.jpg'), after: pig('IMG_6906.jpg') },
+  { before: pig('IMG_7597.jpg'), after: pig('IMG_7600.jpg') },
 ]
 
 const pigmentGallery = [
-  pig('IMG_6093.JPG'),
-  pig('IMG_6096.JPG'),
-  pig('IMG_9123.JPG'),
-  pig('IMG_5592.JPG'),
-  pig('IMG_5596.JPG'),
+  pig('IMG_6093.jpg'),
+  pig('IMG_6096.jpg'),
+  pig('IMG_9123.jpg'),
+  pig('IMG_5592.jpg'),
+  pig('IMG_5596.jpg'),
 ]
 
 const mattingPairs = [
-  { before: mat('IMG_1190.JPG'), after: mat('IMG_1249.JPG') },
-  { before: mat('IMG_8133.JPG'), after: mat('IMG_8176.JPG') },
+  { before: mat('IMG_1190.jpg'), after: mat('IMG_1249.jpg') },
+  { before: mat('IMG_8133.jpg'), after: mat('IMG_8176.jpg') },
 ]
 
-const mattingGallery = [mat('IMG_8186.JPG')]
+const mattingGallery = [mat('IMG_8186.jpg')]
 
 const techPairs = [
-  { before: tec('IMG_4185.JPG'), after: tec('IMG_4243.JPG') },
+  { before: tec('IMG_4185.jpg'), after: tec('IMG_4243.jpg') },
 ]
 
 const techGallery = [
-  tec('IMG_4251.JPG'),
-  tec('IMG_8680.JPG'),
-  tec('IMG_8684.JPG'),
-  tec('IMG_8661.JPG'),
-  tec('IMG_7481.JPG'),
-  tec('IMG_5699.JPG'),
+  tec('IMG_4251.jpg'),
+  tec('IMG_8680.jpg'),
+  tec('IMG_8684.jpg'),
+  tec('IMG_8661.jpg'),
+  tec('IMG_7481.jpg'),
+  tec('IMG_5699.jpg'),
   tec('IMG_6140.jpg'),
   tec('IMG_6155.jpg'),
   tec('IMG_6158.jpg'),
   tec('IMG_1197.jpg'),
-  tec('IMG_4228.JPG'),
-  tec('IMG_4189.JPG'),
+  tec('IMG_4228.jpg'),
+  tec('IMG_4189.jpg'),
 ]
 
 export default function PortfolioPage() {

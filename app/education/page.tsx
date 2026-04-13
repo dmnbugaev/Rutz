@@ -87,7 +87,7 @@ export default function EducationPage() {
             <AnimateOnScroll animation="slide-left">
               <div className="relative h-[400px] sm:h-[520px] md:h-[620px] overflow-hidden gallery-frame">
                 <Image
-                  src="/image/IMG_9491.jpg"
+                  src="/images/portfolio/IMG_9491.jpg"
                   alt="Дарья Рутц — преподаватель"
                   fill
                   className="object-cover grayscale-luxury"
@@ -107,10 +107,7 @@ export default function EducationPage() {
 
                 <blockquote className="border-l-4 border-foreground pl-6 py-2">
                   <p className="text-muted-foreground leading-relaxed italic">
-                    «В профессию пришла с нуля, без наставников и финансовой поддержки.
-                    Прошла путь от испорченных волос до идеального цвета через личные ошибки.
-                    Именно этот опыт позволяет давать вам не эксперимент,
-                    а гарантированный результат.»
+                    «Я прошла путь в профессию с самого нуля, полагаясь только на собственное упорство и постоянную практику. Годы глубокого погружения в колористику и огромная насмотренность позволяют мне сегодня не экспериментировать, а гарантировать результат. Я убеждена, что шаблонных решений не существует: каждый клиент уникален, поэтому я создаю индивидуальные рецепты окрашивания, которые подчеркивают именно вашу природную красоту.»
                   </p>
                 </blockquote>
 

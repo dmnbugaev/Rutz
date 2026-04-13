@@ -107,7 +107,7 @@ export default function ContactsPage() {
         <AnimateOnScroll animation="fade-in">
           <div className="relative h-[320px] sm:h-[420px] md:h-[500px] overflow-hidden">
             <Image
-              src="/image/IMG_9526.jpg"
+              src="/images/portfolio/IMG_9526.jpg"
               alt="Пространство красоты RUTZ"
               fill
               className="object-cover grayscale-luxury"

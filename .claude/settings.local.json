@@ -2,7 +2,39 @@
   "permissions": {
     "allow": [
       "mcp__ide__getDiagnostics",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(cp public/image/IMG_9488.jpg public/images/portfolio/)",
+      "Bash(cp public/image/IMG_9491.jpg public/images/portfolio/)",
+      "Bash(cp public/image/IMG_9494.jpg public/images/portfolio/)",
+      "Bash(cp public/image/IMG_9495.jpg public/images/portfolio/)",
+      "Bash(cp public/image/IMG_9497.jpg public/images/portfolio/)",
+      "Bash(cp \"public/image/new_image/Матирование/IMG_1190.JPG\" public/images/matting/)",
+      "Bash(cp \"public/image/new_image/Матирование/IMG_1249.JPG\" public/images/matting/)",
+      "Bash(cp \"public/image/new_image/Матирование/IMG_8133.JPG\" public/images/matting/)",
+      "Bash(cp \"public/image/new_image/Матирование/IMG_8176.JPG\" public/images/matting/)",
+      "Bash(cp \"public/image/new_image/Матирование/IMG_8186.JPG\" public/images/matting/)",
+      "Bash(cp \"public/image/new_image/выход из нежелательного пигмента/IMG_1647.JPG\" public/images/pigment-removal/)",
+      "Bash(cp \"public/image/new_image/выход из нежелательного пигмента/IMG_1663.JPG\" public/images/pigment-removal/)",
+      "Bash(cp \"public/image/new_image/выход из нежелательного пигмента/IMG_2559.jpg\" public/images/pigment-removal/)",
+      "Bash(cp \"public/image/new_image/выход из нежелательного пигмента/IMG_2560.jpg\" public/images/pigment-removal/)",
+      "Bash(cp \"public/image/new_image/выход из нежелательного пигмента/IMG_5592.JPG\" public/images/pigment-removal/)",
+      "Bash(cp \"public/image/new_image/окрашивание техники/IMG_1197.jpg\" public/images/coloring-techniques/)",
+      "Bash(cp \"public/image/new_image/окрашивание техники/IMG_4185.JPG\" public/images/coloring-techniques/)",
+      "Bash(cp \"public/image/new_image/окрашивание техники/IMG_4189.JPG\" public/images/coloring-techniques/)",
+      "Bash(cp \"public/image/new_image/окрашивание техники/IMG_4228.JPG\" public/images/coloring-techniques/)",
+      "Bash(cp \"public/image/new_image/окрашивание техники/IMG_4243.JPG\" public/images/coloring-techniques/)",
+      "Bash(cp \"public/image/new_image/сертефикаты/IMG_1369.JPG\" public/images/certificates/)",
+      "Bash(cp \"public/image/new_image/сертефикаты/IMG_2557.jpg\" public/images/certificates/)",
+      "Bash(cp \"public/image/new_image/сертефикаты/IMG_2558.jpg\" public/images/certificates/)",
+      "Bash(cp \"public/image/new_image/сертефикаты/Народный.jpeg\" public/images/certificates/narodny.jpeg)",
+      "Bash(cp \"public/image/new_image/фото самой Дарьи Рутц.JPG\" public/images/about/daria-rutz.jpg)",
+      "Bash(cp:*)",
+      "Bash(cp *.JPG *.jpg *.jpeg \"D:/WebSite/Rutz/public/images/about/\")",
+      "Bash(cp *.jpg \"D:/WebSite/Rutz/public/images/about/\")",
+      "Bash(rm -rf public/image)",
+      "Bash(rm -f \"тест.txt\")",
+      "Bash(npm run:*)",
+      "Bash(ls -1 *.*)"
     ]
   }
 }
