@@ -113,8 +113,7 @@ export default function EducationPage() {
 
                 <p className="text-muted-foreground leading-relaxed">
                   Я вложила <strong>1 000 000 рублей</strong> в свои знания и передаю
-                  их тем, кто готов учиться серьёзно. Приходите за выжимкой
-                  10-летней практики.
+                  их тем, кто готов учиться серьёзно. 10 лет практики — это ваша гарантия безопасности и предсказуемого результата.
                 </p>
 
                 <div className="space-y-3">

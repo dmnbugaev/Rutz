@@ -99,6 +99,60 @@ export default function HomePage() {
 
       </section>
 
+      {/* ── Фото-секция ── */}
+      <section className="py-16 sm:py-24 md:py-32 bg-accent/20 border-t border-b border-border">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <AnimateOnScroll animation="slide-left">
+              <div className="relative h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden gallery-frame">
+                <Image
+                  src="/images/about/daria-rutz.jpg"
+                  alt="Окрашивание волос в салоне RUTZ"
+                  fill
+                  className="object-cover grayscale-luxury"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="slide-right">
+              <div className="space-y-6 sm:space-y-8">
+                <span className="text-xs uppercase tracking-luxury text-muted-foreground">
+                  О мастере
+                </span>
+                <h2 className="serif text-3xl sm:text-4xl md:text-5xl leading-tight">
+                  Дарья Рутц
+                </h2>
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                  В профессию пришла с нуля — без наставников и финансовой поддержки.
+                  Прошла путь от испорченных волос до идеального цвета через личные ошибки.
+                  Именно этот опыт позволяет давать не эксперимент, а гарантированный результат.
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    '10 лет практики — топ в сложных случаях',
+                    'Эксперт выхода из нежелательных пигментов',
+                    'Работа с сединой в классике и альтернативе',
+                    'Открытие пространства RUTZ в 2024 году',
+                  ].map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="w-1 h-1 rounded-full bg-foreground flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury border border-border/60 px-6 py-3 rounded-xl transition-luxury hover:bg-accent/60 glass-subtle"
+                >
+                  Узнать больше <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+                </Link>
+              </div>
+            </AnimateOnScroll>
+          </div>
+        </div>
+      </section>
+
       {/* ── Принцип работы (KEY MESSAGE) ── */}
       <section className="py-16 sm:py-24 md:py-32 border-t border-border/40 bg-accent/20">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
@@ -108,7 +162,7 @@ export default function HomePage() {
                 Важно знать
               </span>
               <h2 className="serif text-3xl sm:text-4xl md:text-5xl mb-8 leading-snug">
-                Я не работаю вслепую
+                Запись на окрашивание возможна только после личной консультации
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-10">
                 Чтобы результат превзошёл ожидания, а волосы остались здоровыми,
@@ -182,60 +236,6 @@ export default function HomePage() {
                 </div>
               </AnimateOnScroll>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Фото-секция ── */}
-      <section className="py-16 sm:py-24 md:py-32 bg-accent/20 border-t border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <AnimateOnScroll animation="slide-left">
-              <div className="relative h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden gallery-frame">
-                <Image
-                  src="/images/about/daria-rutz.jpg"
-                  alt="Окрашивание волос в салоне RUTZ"
-                  fill
-                  className="object-cover grayscale-luxury"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </AnimateOnScroll>
-
-            <AnimateOnScroll animation="slide-right">
-              <div className="space-y-6 sm:space-y-8">
-                <span className="text-xs uppercase tracking-luxury text-muted-foreground">
-                  О мастере
-                </span>
-                <h2 className="serif text-3xl sm:text-4xl md:text-5xl leading-tight">
-                  Дарья Рутц
-                </h2>
-                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                  В профессию пришла с нуля — без наставников и финансовой поддержки.
-                  Прошла путь от испорченных волос до идеального цвета через личные ошибки.
-                  Именно этот опыт позволяет давать не эксперимент, а гарантированный результат.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    '10 лет практики — топ в сложных случаях',
-                    'Эксперт выхода из нежелательных пигментов',
-                    'Работа с сединой в классике и альтернативе',
-                    'Открытие пространства RUTZ в 2024 году',
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <span className="w-1 h-1 rounded-full bg-foreground flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury border border-border/60 px-6 py-3 rounded-xl transition-luxury hover:bg-accent/60 glass-subtle"
-                >
-                  Узнать больше <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
-                </Link>
-              </div>
-            </AnimateOnScroll>
           </div>
         </div>
       </section>

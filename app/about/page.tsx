@@ -113,7 +113,7 @@ export default function AboutPage() {
               <div className="space-y-6 lg:pt-4">
                 <span className="text-xs uppercase tracking-luxury text-muted-foreground">История</span>
                 <h2 className="serif text-3xl sm:text-4xl md:text-5xl leading-tight">
-                  Путь от нуля до эксперта
+                  Путь от базовых знаний к экспертности
                 </h2>
                 <div className="space-y-5 text-muted-foreground leading-relaxed">
                   <p>
@@ -126,8 +126,7 @@ export default function AboutPage() {
                   </p>
                   <blockquote className="border-l-4 border-foreground pl-6 py-2 my-6">
                     <p className="serif text-xl italic">
-                      «Приходите за выжимкой 10-летней практики. Вы получите не
-                      эксперимент на ваших волосах, а проверенный результат.»
+                      «10 лет практики — это ваша гарантия безопасности и предсказуемого результата.»
                     </p>
                   </blockquote>
                   <p>
@@ -156,7 +155,7 @@ export default function AboutPage() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
           <AnimateOnScroll animation="fade-up">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="serif text-3xl sm:text-4xl md:text-5xl">Экспертиза</h2>
+              <h2 className="serif text-3xl sm:text-4xl md:text-5xl">Зоны моей экспертности</h2>
             </div>
           </AnimateOnScroll>
 
@@ -266,7 +265,7 @@ export default function AboutPage() {
               Принцип работы
             </h2>
             <p className="text-base sm:text-lg leading-relaxed opacity-80 mb-4">
-              Я не работаю «с листа» или по фото из WhatsApp.
+              Точный план работы и стоимость я определяю только при личной встрече. Диагностика по фото в WhatsApp не дает 100% гарантии результата.
             </p>
             <p className="text-base sm:text-lg leading-relaxed opacity-80 mb-8">
               Первичная консультация возможна онлайн или в салоне.
