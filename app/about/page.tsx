@@ -240,6 +240,30 @@ export default function AboutPage() {
                 src: '/images/certificates/IMG_2558.jpg',
                 alt: 'Сертификат — Смывка из чёрного',
               },
+              {
+                src: '/images/certificates/kuleshova_page-0001.jpg',
+                alt: 'Диплом Кулешовой — страница 1',
+              },
+              {
+                src: '/images/certificates/kuleshova_page-0002.jpg',
+                alt: 'Диплом Кулешовой — страница 2',
+              },
+              {
+                src: '/images/certificates/kuleshova_page-0003.jpg',
+                alt: 'Диплом Кулешовой — страница 3',
+              },
+              {
+                src: '/images/certificates/kuleshova_page-0004.jpg',
+                alt: 'Диплом Кулешовой — страница 4',
+              },
+              {
+                src: '/images/certificates/kuleshova_page-0005.jpg',
+                alt: 'Диплом Кулешовой — страница 5',
+              },
+              {
+                src: '/images/certificates/kuleshova_page-0006.jpg',
+                alt: 'Диплом Кулешовой — страница 6',
+              },
             ].map((cert, i) => (
               <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
                 <div className="relative aspect-[4/3] overflow-hidden gallery-frame">

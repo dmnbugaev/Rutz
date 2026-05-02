@@ -34,7 +34,9 @@
       "Bash(rm -rf public/image)",
       "Bash(rm -f \"тест.txt\")",
       "Bash(npm run:*)",
-      "Bash(ls -1 *.*)"
+      "Bash(ls -1 *.*)",
+      "Bash(Get-ChildItem -Path \"D:\\\\WebSite\\\\Rutz\" -Directory)",
+      "Bash(Select-Object Name)"
     ]
   }
 }
