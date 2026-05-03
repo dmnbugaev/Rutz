@@ -99,7 +99,7 @@ export default function AboutPage() {
             <AnimateOnScroll animation="slide-left">
               <div className="relative h-[450px] sm:h-[550px] md:h-[650px] overflow-hidden gallery-frame">
                 <Image
-                  src="/images/about/daria-rutz.jpg"
+                  src="/images/about/daria-rutz_1.jpg"
                   alt="Дарья Рутц — колорист"
                   fill
                   className="object-cover object-top"

@@ -106,7 +106,7 @@ export default function HomePage() {
             <AnimateOnScroll animation="slide-left">
               <div className="relative h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden gallery-frame">
                 <Image
-                  src="/images/about/daria-rutz.jpg"
+                  src="/images/about/daria-rutz_1.jpg"
                   alt="Окрашивание волос в салоне RUTZ"
                   fill
                   className="object-cover grayscale-luxury"
