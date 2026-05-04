@@ -31,7 +31,7 @@ const categories = [
     title: 'Консультация',
     desc: 'Запись на окрашивание возможна только после личной консультации. Начинаем с личной консультации: диагностика структуры, проверка истории волос, точный план и фиксированная цена.',
     note: 'Без фото из WhatsApp · Только очно',
-    image: '/images/portfolio/IMG_9495.jpg',
+    image: '/images/IMG_9510.jpg',
     imageAlt: 'Консультация',
     portfolioHref: null,
     services: [
@@ -46,7 +46,7 @@ const categories = [
     title: 'Окрашивание',
     desc: 'Классическое и альтернативное окрашивание: тонирование, матирование, камуфляж, баня. В каждую процедуру входит УХОД + УКЛАДКА по форме стрижки бесплатно.',
     note: 'УХОД + УКЛАДКА — включены',
-    image: '/images/coloring-techniques/IMG_6140.jpg',
+    image: '/images/IMG_0882.jpg',
     imageAlt: 'Окрашивание волос',
     portfolioHref: '/portfolio#matting',
     services: [
@@ -59,7 +59,7 @@ const categories = [
     title: 'Техники окрашивания',
     desc: 'AirTouch, Мелирование (рельеф), Балаяж, Начёс (шатуш). Работа с учётом индивидуальных особенностей ваших волос. Включает УХОД + УКЛАДКА.',
     note: 'УХОД + УКЛАДКА — включены',
-    image: '/images/coloring-techniques/IMG_1197.jpg',
+    image: '/images/IMG_4251.jpg',
     imageAlt: 'Техники окрашивания',
     portfolioHref: '/portfolio#techniques',
     services: [
@@ -74,7 +74,7 @@ const categories = [
     title: 'Выход из нежелательного цвета',
     desc: 'Эксперт метода по выходу из нежелательных пигментов и чёрного цвета. Без порошка и без потери качества волос. Гарантированный результат на основе 10-летнего опыта.',
     note: 'Без порошка · Без потери качества',
-    image: '/images/pigment-removal/IMG_2559.jpg',
+    image: '/images/IMG_7672.jpg',
     imageAlt: 'Выход из нежелательного цвета',
     portfolioHref: '/portfolio#pigment',
     services: [
@@ -86,7 +86,7 @@ const categories = [
     title: 'Стрижка и укладка',
     desc: 'Авторские стрижки с учётом формы лица и структуры волос. Профессиональные укладки для любого образа.',
     note: null,
-    image: '/images/coloring-techniques/IMG_8684.jpg',
+    image: '/images/IMG_1131.jpg',
     imageAlt: 'Стрижка',
     portfolioHref: null,
     services: [
