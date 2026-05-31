@@ -270,6 +270,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Мастер-класс анонс ── */}
+      <section className="py-16 sm:py-20 border-t border-border bg-accent/20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <AnimateOnScroll animation="fade-up">
+            <div className="border border-border bg-background p-8 sm:p-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+              <div className="space-y-3">
+                <span className="text-xs uppercase tracking-luxury text-muted-foreground">
+                  Мастер-класс · 20 июня
+                </span>
+                <h2 className="serif text-2xl sm:text-3xl md:text-4xl">
+                  Выход из нежелательных оттенков
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
+                  Как безопасно выйти из нежелательных оттенков, сохранив качество волос
+                  и при этом сократить посещение салонов красоты.
+                </p>
+              </div>
+              <Link
+                href="/education/masterclass"
+                className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80 flex-shrink-0"
+              >
+                Подробнее <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* ── Running text ── */}
       <div className="border-t border-b border-border py-5 overflow-hidden bg-foreground text-background">
         <div className="animate-marquee whitespace-nowrap flex gap-8">

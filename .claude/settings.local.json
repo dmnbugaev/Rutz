@@ -36,7 +36,9 @@
       "Bash(npm run:*)",
       "Bash(ls -1 *.*)",
       "Bash(Get-ChildItem -Path \"D:\\\\WebSite\\\\Rutz\" -Directory)",
-      "Bash(Select-Object Name)"
+      "Bash(Select-Object Name)",
+      "Bash(Get-ChildItem -Path \"D:\\\\WebSite\\\\Rutz\" -Force)",
+      "Bash(Select-Object Name, FullName)"
     ]
   }
 }
