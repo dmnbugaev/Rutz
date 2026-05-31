@@ -6,6 +6,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CookieConsent } from '@/components/CookieConsent'
 import { YandexMetrika } from '@/components/YandexMetrika'
+import { MasterclassPopup } from '@/components/MasterclassPopup'
 
 const playfair = Playfair_Display({
   subsets: ['latin', 'cyrillic'],
@@ -92,6 +93,7 @@ export default function RootLayout({
           <main className="pt-[57px] sm:pt-[65px] min-w-0 overflow-x-hidden">{children}</main>
           <Footer />
           <CookieConsent />
+          <MasterclassPopup />
           <YandexMetrika />
         </ThemeProvider>
         <script

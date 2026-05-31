@@ -140,7 +140,7 @@ export default function MasterclassPage() {
                   <div className="space-y-3 pt-2">
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
                       <Calendar className="w-4 h-4 flex-shrink-0" strokeWidth={1.5} />
-                      <span>20 июня 2025 года</span>
+                      <span>20 июня 2026 года</span>
                     </div>
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
                       <MapPin className="w-4 h-4 flex-shrink-0" strokeWidth={1.5} />
@@ -344,7 +344,7 @@ export default function MasterclassPage() {
             description:
               'Мастер-класс Дарьи Рутц о том, как безопасно выйти из нежелательных оттенков, сохранив качество волос и сократить посещение салонов красоты.',
             url: 'https://rutz.beauty/education/masterclass',
-            startDate: '2025-06-20',
+            startDate: '2026-06-20',
             eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
             eventStatus: 'https://schema.org/EventScheduled',
             location: {
