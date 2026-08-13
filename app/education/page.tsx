@@ -87,7 +87,7 @@ export default function EducationPage() {
             <AnimateOnScroll animation="slide-left">
               <div className="relative h-[400px] sm:h-[520px] md:h-[620px] overflow-hidden gallery-frame">
                 <Image
-                  src="/images/portfolio/IMG_9491.jpg"
+                  src="/images/portfolio/IMG_9687.jpg"
                   alt="Дарья Рутц — преподаватель"
                   fill
                   className="object-cover grayscale-luxury"
@@ -220,14 +220,23 @@ export default function EducationPage() {
                 </p>
               </div>
 
-              <div className="text-center">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
                 <Link
                   href="https://t.me/rutzprostranstvo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-foreground text-background px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                  className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 sm:px-8 py-4 sm:py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
                 >
-                  Записаться на собеседование
+                  Записаться в Telegram
+                  <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+                </Link>
+                <Link
+                  href="https://vk.ru/darya_skopa13"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 border border-border/60 px-6 sm:px-8 py-4 sm:py-5 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
+                >
+                  Записаться во ВКонтакте
                   <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
                 </Link>
               </div>

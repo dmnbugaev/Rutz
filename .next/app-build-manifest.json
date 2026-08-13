@@ -16,15 +16,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/reviews/page": [
+    "/education/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/reviews/page.js"
+      "static/chunks/app/education/page.js"
     ],
-    "/_not-found/page": [
+    "/privacy/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/privacy/page.js"
+    ],
+    "/terms/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/terms/page.js"
+    ],
+    "/consent/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/consent/page.js"
     ]
   }
 }

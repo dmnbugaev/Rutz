@@ -106,7 +106,7 @@ export default function MasterclassPage() {
               <AnimateOnScroll animation="slide-left">
                 <div className="relative h-[400px] sm:h-[520px] overflow-hidden gallery-frame">
                   <Image
-                    src="/images/master/IMG_5579.JPG"
+                    src="/images/master/IMG_9181.JPG"
                     alt="Мастер-класс Дарьи Рутц — выход из нежелательных оттенков"
                     fill
                     className="object-cover grayscale-luxury"
