@@ -226,57 +226,83 @@ export default function AboutPage() {
             </div>
           </AnimateOnScroll>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
             {[
               {
                 src: '/images/certificates/IMG_1369.jpg',
                 alt: 'Диплом PinCode — От топового мастера до салона',
+                w: 1280,
+                h: 901,
               },
               {
                 src: '/images/certificates/IMG_2557.jpg',
                 alt: 'Диплом — программа наставничества Навигатор, преподавание и мастер-классы',
+                w: 2560,
+                h: 1807,
               },
               {
                 src: '/images/certificates/IMG_2558.jpg',
                 alt: 'Сертификат — Смывка из чёрного',
+                w: 2560,
+                h: 1837,
               },
               {
                 src: '/images/certificates/kuleshova_page-0001_v2.jpg',
                 alt: 'Диплом Кулешовой — страница 1',
+                w: 5288,
+                h: 3887,
               },
               {
-                src: '/images/certificates/kuleshova_page-0002.jpg',
-                alt: 'Диплом Кулешовой — страница 2',
+                src: '/images/certificates/kuleshova_page-0002_v2.jpg',
+                alt: 'Сертификат ESTEL — Мелирование под новым углом',
+                w: 5028,
+                h: 3675,
               },
               {
                 src: '/images/certificates/kuleshova_page-0003.jpg',
                 alt: 'Диплом Кулешовой — страница 3',
+                w: 3847,
+                h: 6154,
               },
               {
                 src: '/images/certificates/kuleshova_page-0004.jpg',
                 alt: 'Диплом Кулешовой — страница 4',
+                w: 4337,
+                h: 6263,
               },
               {
                 src: '/images/certificates/kuleshova_page-0005_v2.jpg',
                 alt: 'Диплом Кулешовой — страница 5',
+                w: 3949,
+                h: 5946,
               },
               {
-                src: '/images/certificates/kuleshova_page-0006.jpg',
+                src: '/images/certificates/kuleshova_page-0006_v2.jpg',
                 alt: 'Диплом Кулешовой — страница 6',
+                w: 5753,
+                h: 4068,
               },
               {
                 src: '/images/certificates/narodny.jpeg',
                 alt: 'Диплом — Народная любовь, лучшая бьюти-площадка Алтайского фестиваля эстетики и стиля',
+                w: 2190,
+                h: 3200,
               },
             ].map((cert, i) => (
-              <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
-                <div className="relative aspect-[4/3] overflow-hidden gallery-frame">
+              <AnimateOnScroll
+                key={i}
+                animation="fade-up"
+                delay={i * 120}
+                className="mb-6 break-inside-avoid"
+              >
+                <div className="gallery-frame">
                   <Image
                     src={cert.src}
                     alt={cert.alt}
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 640px) 100vw, 33vw"
+                    width={cert.w}
+                    height={cert.h}
+                    className="w-full h-auto"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
               </AnimateOnScroll>
