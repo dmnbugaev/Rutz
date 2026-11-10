@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
-import { ArrowUpRight, MapPin, Phone, Clock, CalendarCheck, MessageCircle } from 'lucide-react'
+import { ArrowUpRight, MapPin, Phone, Clock, CalendarCheck, MessageCircle, Megaphone } from 'lucide-react'
+import { MAX_CHANNEL_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Контакты — Запись к колористу в Барнауле',
@@ -54,6 +55,7 @@ const contacts = [
 
 const socials = [
   { name: 'Telegram', url: 'https://t.me/rutzprostranstvo', note: null },
+  { name: 'MAX', url: MAX_CHANNEL_URL, note: null },
   { name: 'Instagram*', url: 'https://www.instagram.com/rutz_prostranstvo', note: '* Meta признана экстремистской организацией в РФ' },
   { name: 'ВКонтакте', url: 'https://vk.ru/darya_skopa13', note: null },
 ]
@@ -71,6 +73,13 @@ const bookingOptions = [
     title: 'Написать в Telegram',
     sub: 'Отвечу в течение часа',
     href: 'https://t.me/rutzprostranstvo',
+    external: true,
+  },
+  {
+    icon: Megaphone,
+    title: 'Канал в MAX',
+    sub: 'Новости салона и анонсы свободных окон',
+    href: MAX_CHANNEL_URL,
     external: true,
   },
   {

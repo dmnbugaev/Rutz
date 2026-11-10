@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 import { RutzLogo } from '@/components/RutzLogo'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { MAX_CHANNEL_URL, YOUTUBE_BROADCAST_ID, YOUTUBE_BROADCAST_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: {
@@ -265,6 +266,63 @@ export default function HomePage() {
               >
                 Узнать об обучении <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
               </Link>
+            </AnimateOnScroll>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Эфир о салоне ── */}
+      <section className="py-16 sm:py-24 md:py-32 bg-accent/20 border-t border-b border-border">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <div className="max-w-4xl mx-auto">
+            <AnimateOnScroll animation="fade-up">
+              <div className="text-center mb-10 sm:mb-14">
+                <span className="text-xs uppercase tracking-luxury text-muted-foreground block mb-4">
+                  RUTZ в медиа
+                </span>
+                <h2 className="serif text-3xl sm:text-4xl md:text-5xl mb-4">
+                  Эфир о салоне
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                  Телеканал ТОЛК о проекте «Преображение»: десятки женщин
+                  меняют свою жизнь — смотрите прямо здесь
+                </p>
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="fade-up" delay={150}>
+              <div className="relative w-full aspect-video gallery-frame border border-border overflow-hidden">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_BROADCAST_ID}`}
+                  title="Эфир телеканала ТОЛК о проекте «Преображение» — RUTZ Пространство красоты"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full"
+                />
+              </div>
+
+              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a
+                  href={MAX_CHANNEL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 sm:px-12 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-foreground/80"
+                >
+                  Подписаться на канал в MAX
+                  <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+                </a>
+                <a
+                  href={YOUTUBE_BROADCAST_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 border border-border/60 px-8 sm:px-12 py-4 rounded-2xl text-xs uppercase tracking-luxury transition-luxury hover:bg-accent/60 glass-subtle"
+                >
+                  Открыть на YouTube
+                  <ArrowUpRight className="w-4 h-4" strokeWidth={1.5} />
+                </a>
+              </div>
             </AnimateOnScroll>
           </div>
         </div>

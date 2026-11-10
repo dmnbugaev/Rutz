@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { RutzLogo } from './RutzLogo'
 import { ArrowUpRight } from 'lucide-react'
+import { MAX_CHANNEL_URL } from '@/lib/constants'
 
 const navLinks = [
   { name: 'Обо мне', path: '/about' },
@@ -14,6 +15,7 @@ const navLinks = [
 
 const socials = [
   { name: 'Telegram', url: 'https://t.me/rutzprostranstvo' },
+  { name: 'MAX', url: MAX_CHANNEL_URL },
   { name: 'Instagram*', url: 'https://www.instagram.com/rutz_prostranstvo' },
   { name: 'ВКонтакте', url: 'https://vk.ru/darya_skopa13' },
 ]
@@ -139,6 +141,15 @@ export function Footer() {
                 className="flex items-center justify-between px-5 py-4 border border-background/10 rounded-2xl text-[11px] uppercase tracking-luxury opacity-40 hover:opacity-80 transition-luxury group"
               >
                 Telegram
+                <ArrowUpRight className="w-3.5 h-3.5 transition-luxury" strokeWidth={1.5} />
+              </a>
+              <a
+                href={MAX_CHANNEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-5 py-4 border border-background/10 rounded-2xl text-[11px] uppercase tracking-luxury opacity-40 hover:opacity-80 transition-luxury group"
+              >
+                Канал в MAX
                 <ArrowUpRight className="w-3.5 h-3.5 transition-luxury" strokeWidth={1.5} />
               </a>
               <a

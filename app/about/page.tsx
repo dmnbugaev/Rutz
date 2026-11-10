@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AnimateOnScroll } from '@/components/AnimateOnScroll'
 import { ArrowRight, Award, Heart, Sparkles, Star } from 'lucide-react'
-import { TEACHERS } from '@/lib/constants'
+import { TEACHERS, MAX_CHANNEL_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Дарья Рутц — колорист Барнаул с 10-летним опытом',
@@ -360,6 +360,7 @@ export default function AboutPage() {
           ],
           sameAs: [
             'https://t.me/rutzprostranstvo',
+            MAX_CHANNEL_URL,
             'https://www.instagram.com/rutz_prostranstvo',
             'https://vk.ru/darya_skopa13',
           ],
