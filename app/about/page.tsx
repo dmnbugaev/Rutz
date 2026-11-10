@@ -241,7 +241,7 @@ export default function AboutPage() {
                 alt: 'Сертификат — Смывка из чёрного',
               },
               {
-                src: '/images/certificates/kuleshova_page-0001.jpg',
+                src: '/images/certificates/kuleshova_page-0001_v2.jpg',
                 alt: 'Диплом Кулешовой — страница 1',
               },
               {
@@ -257,7 +257,7 @@ export default function AboutPage() {
                 alt: 'Диплом Кулешовой — страница 4',
               },
               {
-                src: '/images/certificates/kuleshova_page-0005.jpg',
+                src: '/images/certificates/kuleshova_page-0005_v2.jpg',
                 alt: 'Диплом Кулешовой — страница 5',
               },
               {
