@@ -1,35 +1,37 @@
-# Временный диагностический workflow: проверяет, какой SSH-ключ
-# принимается прод-сервером (секрет SSH_HOST). Удаляется после починки.
-name: SSH probe
+# Временный диагностический workflow: осмотр прод-сервера Rutz.
+# Удаляется после починки деплоя.
+name: Server inspect
 
 on:
   workflow_dispatch:
 
 jobs:
-  probe:
+  inspect:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Перебор ключей и пользователей
+      - name: Осмотр сервера
         env:
           HOST: ${{ secrets.SSH_HOST }}
-          K1: ${{ secrets.CAND1 }}
-          K2: ${{ secrets.CAND2 }}
-          K3: ${{ secrets.CAND3 }}
+          K: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
-          printf '%s\n' "$K1" > ~/.ssh/k1
-          printf '%s\n' "$K2" > ~/.ssh/k2
-          printf '%s\n' "$K3" > ~/.ssh/k3
-          chmod 600 ~/.ssh/k*
-          echo "host=$HOST port=22222"
-          for u in admin root; do
-            for k in k1 k2 k3; do
-              echo "=== user=$u key=$k ==="
-              ssh -p 22222 -i ~/.ssh/$k -o IdentitiesOnly=yes -o BatchMode=yes \
-                  -o ConnectTimeout=10 -o StrictHostKeyChecking=accept-new \
-                  "$u@$HOST" 'echo "SUCCESS user=$(whoami) host=$(hostname)"; ls -d /var/www/Rutz 2>/dev/null || echo no-rutz-dir' 2>&1 | tail -2
-              sleep 2
-            done
-          done
-          echo "=== probe done ==="
+          printf '%s\n' "$K" > ~/.ssh/k && chmod 600 ~/.ssh/k
+          ssh -p 22222 -i ~/.ssh/k -o IdentitiesOnly=yes -o BatchMode=yes \
+              -o ConnectTimeout=15 -o StrictHostKeyChecking=accept-new \
+              "admin@$HOST" '
+                echo "=== INSPECT on $(hostname) ==="
+                echo "--- ip ---"; ip -4 addr show 2>/dev/null | grep inet | grep -v 127.0.0.1
+                echo "--- /var/www ---"; ls /var/www 2>&1
+                echo "--- rutz dir ---"; ls -ld /var/www/Rutz 2>&1
+                cd /var/www/Rutz 2>/dev/null && git log --oneline -1 2>&1 && git status -sb 2>&1 | head -2
+                echo "--- pm2 (as $(whoami)) ---"; timeout 10 pm2 ls 2>&1 | head -15
+                echo "--- pm2 daemon owners ---"; ls -ld /root/.pm2 /home/*/.pm2 2>/dev/null
+                echo "--- node procs ---"; ps aux | grep -E "next-server|node" | grep -v grep | head -6
+                echo "--- listening ---"; (ss -tlnp 2>/dev/null || netstat -tlnp 2>/dev/null) | grep -E ":80 |:443 |:3000 " | head -6
+                echo "--- nginx sites ---"; ls /etc/nginx/sites-enabled 2>/dev/null || ls /etc/nginx/conf.d 2>/dev/null || echo no-nginx-conf
+                echo "--- certbot ---"; ls /etc/letsencrypt/live 2>/dev/null || echo no-certbot
+                echo "--- disk ---"; df -h / | tail -1
+                echo "--- node ---"; node -v 2>&1; npm -v 2>&1
+                echo "=== END ==="
+              ' 2>&1
