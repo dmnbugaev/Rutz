@@ -1,38 +1,34 @@
-# Временный verify-workflow: проверяет результат деплоя на сервере.
-# Удаляется после проверки.
-name: Deploy verify
+# Финальный временный workflow: данные для восстановления домена.
+# Удаляется сразу после запуска.
+name: Domain restore info
 
 on:
   workflow_dispatch:
 
 jobs:
-  verify:
+  info:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Проверка деплоя
+      - name: Сбор данных для DNS
         env:
           HOST: ${{ secrets.SSH_HOST }}
           K: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s\n' "$K" > ~/.ssh/k && chmod 600 ~/.ssh/k
+          # сравнение с кандидатами — печатаем только совпадение, не значение
+          for ip in 130.49.149.189 5.63.158.22; do
+            [ "$HOST" = "$ip" ] && echo "SSH_HOST_MATCH: $ip"
+          done
           ssh -p 22222 -i ~/.ssh/k -o IdentitiesOnly=yes -o BatchMode=yes \
               -o ConnectTimeout=15 -o StrictHostKeyChecking=accept-new \
               "admin@$HOST" '
-                echo "=== VERIFY ==="
-                cd /var/www/Rutz && git log --oneline -1
-                timeout 10 pm2 ls 2>/dev/null | grep -E "rutz"
-                echo "--- public ip ---"; (curl -s --max-time 8 ifconfig.me || curl -s --max-time 8 api.ipify.org || ip route get 1.1.1.1 2>/dev/null | head -1); echo
-                echo "--- app port ---"; pm2 describe rutz 2>/dev/null | grep -E "script|exec cwd|port" | head -4
-                ss -tlnp 2>/dev/null | grep next-server | head -4
-                echo "--- nginx vhosts ---"; ls /etc/nginx/sites-enabled/ 2>/dev/null; grep -rE "server_name" /etc/nginx/sites-enabled/ 2>/dev/null | head -8
-                echo "--- certs ---"; ls /etc/letsencrypt/live 2>/dev/null || echo no-certbot
-                echo "--- http checks ---"
-                curl -s -o /dev/null -w "local3000: %{http_code}\n" --max-time 8 http://127.0.0.1:3000/ 2>&1
-                for port in 3001 3002 3003; do curl -s -o /dev/null -w "port$port: %{http_code}\n" --max-time 4 http://127.0.0.1:$port/ 2>&1 | grep -v 000; done
-                curl -s --max-time 8 http://127.0.0.1:3000/ | grep -c "мастер-класс" 2>/dev/null || echo "0 упоминаний мастер-класс на главной"
-                curl -s -o /dev/null -w "masterclass page: %{http_code}\n" --max-time 8 http://127.0.0.1:3000/education/masterclass
-                curl -s --max-time 8 http://127.0.0.1:3000/education | grep -c "20 июня" || echo "0 упоминаний 20 июня на /education"
+                echo "=== DOMAIN INFO ==="
+                echo "--- rutz nginx vhost ---"
+                cat /etc/nginx/sites-enabled/rutz 2>/dev/null || cat /etc/nginx/sites-available/rutz 2>/dev/null
+                echo "--- cert dirs ---"
+                ls /etc/letsencrypt 2>/dev/null; ls /etc/ssl/certs 2>/dev/null | head -2
+                for f in $(grep -hoE "ssl_certificate\s+\S+" /etc/nginx/sites-enabled/* 2>/dev/null | awk "{print \$2}" | sort -u); do ls -l "$f" 2>/dev/null; done
                 echo "=== END ==="
               ' 2>&1
