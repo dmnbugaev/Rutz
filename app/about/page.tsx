@@ -264,6 +264,10 @@ export default function AboutPage() {
                 src: '/images/certificates/kuleshova_page-0006.jpg',
                 alt: 'Диплом Кулешовой — страница 6',
               },
+              {
+                src: '/images/certificates/narodny.jpeg',
+                alt: 'Диплом — Народная любовь, лучшая бьюти-площадка Алтайского фестиваля эстетики и стиля',
+              },
             ].map((cert, i) => (
               <AnimateOnScroll key={i} animation="fade-up" delay={i * 120}>
                 <div className="relative aspect-[4/3] overflow-hidden gallery-frame">
