@@ -1,8 +1,19 @@
 {
-  "/page": "app/page.js",
-  "/education/page": "app/education/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
   "/icon.svg/route": "app/icon.svg/route.js",
-  "/terms/page": "app/terms/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
   "/consent/page": "app/consent/page.js",
-  "/privacy/page": "app/privacy/page.js"
+  "/contacts/page": "app/contacts/page.js",
+  "/privacy/page": "app/privacy/page.js",
+  "/about/page": "app/about/page.js",
+  "/portfolio/page": "app/portfolio/page.js",
+  "/page": "app/page.js",
+  "/blog/[id]/page": "app/blog/[id]/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/reviews/page": "app/reviews/page.js",
+  "/education/page": "app/education/page.js",
+  "/services/page": "app/services/page.js",
+  "/terms/page": "app/terms/page.js"
 }
