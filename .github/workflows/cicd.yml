@@ -1,0 +1,77 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  # ── CI: проверки до деплоя ──
+  ci:
+    name: CI — lint, типы, сборка
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Установка зависимостей
+        run: npm ci
+
+      - name: Линт
+        run: npm run lint
+
+      - name: Проверка типов
+        run: npx tsc --noEmit
+
+      - name: Сборка
+        run: npm run build
+
+  # ── CD: деплой на прод, только после успешного CI ──
+  deploy:
+    name: CD — деплой на прод
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    concurrency:
+      group: rutz-deploy
+      cancel-in-progress: false
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22222
+          script_stop: true
+          script: |
+            set -e
+            cd /var/www/Rutz
+            git reset --hard HEAD
+            git pull origin main
+            npm ci
+            npm run build
+            rm -rf .next/cache/images
+            pm2 restart rutz
+
+            # Health-check: ждём, пока Next поднимется после рестарта
+            for i in 1 2 3 4 5; do
+              sleep 3
+              if curl -sf http://127.0.0.1:3003/ -o /dev/null; then
+                echo "Health check OK — сайт отвечает на :3003"
+                exit 0
+              fi
+              echo "Попытка $i/5 — сайт ещё не отвечает..."
+            done
+            echo "Health check FAILED — сайт не отвечает на :3003"
+            exit 1
